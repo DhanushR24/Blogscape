@@ -22,7 +22,7 @@ app.use(morgan('tiny'));
 app.set('view engine', 'ejs');
 
 // database connection
-const dbURI = 'mongodb+srv://dinesh19:c2zjkgKvCxxTaHZ@nodetuts.djld1.mongodb.net/blogscape?retryWrites=true&w=majorityc2zjkgKvCxxTaHZ';
+const dbURI = "mongodb+srv://dinesh19:c2zjkgKvCxxTaHZp@nodetuts.djld1.mongodb.net/blogscape?retryWrites=true&w=majority";
 mongoose.connect(dbURI, {
         useNewUrlParser: true,
         useUnifiedTopology: true
