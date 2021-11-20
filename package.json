@@ -1,0 +1,28 @@
+{
+  "name": "blog-site",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "dev": "nodemon index"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Blogging-Website/Blog-Site.git"
+  },
+  "author": "Dhanush, Dinesh",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Blogging-Website/Blog-Site/issues"
+  },
+  "homepage": "https://github.com/Blogging-Website/Blog-Site#readme",
+  "dependencies": {
+    "ejs": "^3.1.6",
+    "express": "^4.17.1",
+    "mongoose": "^6.0.13",
+    "morgan": "^1.10.0"
+  },
+  "devDependencies": {
+    "nodemon": "^2.0.15"
+  }
+}
