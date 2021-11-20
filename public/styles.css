@@ -146,6 +146,42 @@ section .get_started a {
 
 header {
   text-align: center;
+  font-size: 1.5rem;
+}
+
+header .head_content{
+  width: 90%;
+  margin: auto;
+  padding: 5rem 0;
+}
+
+header .head_content .content_text h1,
+header .head_content .content_text h3{
+  margin:0;
+  margin-bottom: 1rem;
+}
+
+header .head_content .content_button{
+  width: fit-content;
+  padding: 1rem 2rem;
+  margin: auto;
+  margin-top: 4rem;
+  border: none;
+  border-radius: 10px;
+  background-color: rgb(53, 60, 158);
+}
+
+header .head_content .content_button a{
+  font-weight: 600;
+  letter-spacing: 1px;
+  text-decoration: none;
+  color: white;
+}
+
+header .head_content .content_button:hover{
+  background-color: rgb(55, 66, 221);
+  cursor: pointer;
+  transition: 0.4s;
 }
 
 form h2 {
