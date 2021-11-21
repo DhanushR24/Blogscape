@@ -13,7 +13,8 @@
 body {
   margin: 0;
   padding: 0;
-  /* background: linear-gradient(to right top, #ff6f6f, #ff8363, #ff995a, #ffaf54, #ffc555, #ffbd60, #ffb66b, #ffb076, #ff9592, #f788bb, #c28bdf, #6495ed); */
+  color: white;
+  background: linear-gradient(to right top, #ff6f6f, #ff8363, #ff995a, #ffaf54, #ffc555, #ffbd60, #ffb66b, #ffb076, #ff9592, #f788bb, #c28bdf, #6495ed);
 }
 
 .container-flex {
@@ -56,7 +57,7 @@ body {
 
 .main_head .header_text h1 a{
   font-family: 'Caveat', cursive;
-  color: black;
+  color: aliceblue;
 }
 
 .options a{
@@ -83,7 +84,7 @@ body {
 .options .tasks:hover {
   border-radius: 5px;
   border: none;
-  color: rgb(55, 66, 221);
+  color: rgb(65, 76, 230);
   transition: 0.4s;
 }
 
@@ -91,7 +92,7 @@ body {
 .options a,
 .options h3 {
   text-decoration: none;
-  color: black;
+  color: aliceblue;
   list-style: none;
 }
 
@@ -149,6 +150,7 @@ form {
   box-shadow: 1px 2px 10px 10px rgba(0, 0, 0, 0.04);
   border-radius: 20px;
   background: white;
+  color: darkslategray;
 }
 
 form .form_foot {
