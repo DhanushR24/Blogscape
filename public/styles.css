@@ -13,6 +13,7 @@
 body {
   margin: 0;
   padding: 0;
+  /* background: linear-gradient(to right top, #ff6f6f, #ff8363, #ff995a, #ffaf54, #ffc555, #ffbd60, #ffb66b, #ffb076, #ff9592, #f788bb, #c28bdf, #6495ed); */
 }
 
 .container-flex {
@@ -41,6 +42,10 @@ body {
 
 .header_icon img {
   width: inherit;
+}
+
+.current-page {
+  border-bottom: cornflowerblue solid 2px;
 }
 
 /* header {

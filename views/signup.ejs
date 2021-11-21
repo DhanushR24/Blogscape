@@ -1,116 +1,85 @@
 <%- include('partials/header'); -%>
 
 <form>
-    <h2>Sign up</h2>
-    <label for="name">Username</label>
-    <input type="text" name="name" required autocomplete="off" />
-    <div class="name error"></div>
-    <label for="email">Email</label>
-    <input type="text" name="email" required autocomplete="off" />
-    <div class="email error"></div>
-    <label for="password">Password</label>
-    <input type="password" name="password" required autocomplete="off" />
-    <div class="password error"></div>
+  <h2>Sign up</h2>
+  <label for="name">Username <i class="fas fa-signature"></i></label>
+  <input type="text" name="name" autocomplete="off" placeholder="Bond007" />
+  <div class="name error"></div>
 
-    <label for="bdate">Date of Birth</label>
-    <input type="date" name="bdate" required autocomplete="off" >
-    <label for="role">Role</label>
-    <input type="text" placeholder="(Student,Teacher,Traveller,Chef etc...)" name="role" required autocomplete="off" />
-    <!-- <div class="password error"></div> -->
+  <label for="email">Email <i class="fas fa-at"></i></label>
+  <input type="text" name="email" autocomplete="off" placeholder="JamesBond@email.com" />
+  <div class="email error"></div>
 
-    <!-- <label for="pno">Contact Number</label>
-    <input type="text" name="pno" required autocomplete="off" /> -->
-    
+  <label for="password">Password <i class="fas fa-unlock"></i></label>
+  <input type="password" name="password" autocomplete="off" placeholder="******" />
+  <div class="password error"></div>
 
-    <!-- <img src="" alt="" id="img-preview" /> -->
+  <label for="bdate">Date of Birth <i class="fas fa-calendar-day"></i></label>
+  <input type="date" name="bdate" autocomplete="off">
+  <div class="bdate error"></div>
 
-    <!-- <label class="file-upload-container image_select" for="file-upload">
-        <input id="file-upload" style="display: none" type="file" />
-        Select an Image
-    </label> -->
+  <label for="role">Role <i class="fas fa-user-tag"></i></label>
+  <input type="text" placeholder="(Student,Teacher,Traveller,Chef etc...)" name="role" autocomplete="off" />
 
-
-    <button>Sign up</button>
-    <div class="form_foot">
-        <p>Already have an account? <a href="/login">Login</a></p>
-      </div>
+  <button>Sign up</button>
+  <div class="form_foot">
+    <p>Already have an account? <a href="/login">Login</a></p>
+  </div>
 </form>
 
-
-
 <script>
+  const form = document.querySelector("form");
 
-    // const CLOUDINARY_URL = "https://api.cloudinary.com/v1_1/dfinqrdwj/upload";
-    // var CLOUDINARY_UPLOAD_PRESET = "igosuctc";
-  
-    // var imagePreview = document.getElementById("img-preview");
-    // var fileUpload = document.getElementById("file-upload");
-    // let imageURL;
-  
-    // fileUpload.addEventListener("change", function (e) {
-    //   var file = e.target.files[0];
-    //   var formData = new FormData();
-    //   formData.append("file", file);
-    //   formData.append("upload_preset", CLOUDINARY_UPLOAD_PRESET);
-    //   axios({
-    //     url: CLOUDINARY_URL,
-    //     method: "POST",
-    //     data: {
-    //       "Content-Type": "application/x-www-form-urlencoded",
-    //     },
-    //     data: formData,
-    //   })
-    //     .then(function (res) {
-    //       console.log(res);
-    //       imagePreview.src = res.data.secure_url;
-    //       imageURL=res.data.secure_url;
-    //     })
-    //     .catch(function (err) {
-    //       console.log(err);
-    //     });
-    // });
-  
-  
-    const form = document.querySelector("form");
-  
-    const nameError = document.querySelector(".name.error");
-    const emailError = document.querySelector(".email.error");
-    const passwordError = document.querySelector(".password.error");
-    form.addEventListener("submit", async (e) => {
-      e.preventDefault();
-      //reset errors
-      nameError.textContent = "";
-      emailError.textContent = "";
-      passwordError.textContent = "";
-  
-      //get values
-  
-      const userName = form.name.value;
-      const email = form.email.value;
-      const password = form.password.value;
-      const Bdate=form.bdate.value;
-      const role=form.role.value;
-    //   const pno=form.pno.value;
-  
-      try {
-        const res = await fetch("/signup", {
-          method: "POST",
-          body: JSON.stringify({ userName, email, password,Bdate,role }),
-          headers: { "Content-Type": "application/json" },
-        });
-        const data = await res.json();
-        if (data.errors) {
-          nameError.textContent = data.errors.name;
-          emailError.textContent = data.errors.email;
-          passwordError.textContent = data.errors.password;
-        }
-        if (data.user) {
-          location.assign("/");
-        }
-      } catch (err) {
-        console.log(err);
+  const nameError = document.querySelector(".name.error");
+  const emailError = document.querySelector(".email.error");
+  const passwordError = document.querySelector(".password.error");
+  const bdateError = document.querySelector(".bdate.error");
+  form.addEventListener("submit", async (e) => {
+    e.preventDefault();
+
+    //reset errors
+    nameError.textContent = "";
+    emailError.textContent = "";
+    passwordError.textContent = "";
+    bdateError.textContent = "";
+
+    //get values
+
+    const userName = form.name.value;
+    const email = form.email.value;
+    const password = form.password.value;
+    const Bdate = form.bdate.value;
+    const role = form.role.value;
+
+    try {
+      const res = await fetch("/signup", {
+        method: "POST",
+        body: JSON.stringify({
+          userName,
+          email,
+          password,
+          Bdate,
+          role
+        }),
+        headers: {
+          "Content-Type": "application/json"
+        },
+      });
+      const data = await res.json();
+      console.log(data);
+      if (data.errors) {
+        nameError.textContent = data.errors.userName;
+        emailError.textContent = data.errors.email;
+        passwordError.textContent = data.errors.password;
+        bdateError.textContent = data.errors.Bdate;
       }
-    });
-  </script>
+      if (data.user) {
+        location.assign("/");
+      }
+    } catch (err) {
+      console.log(err);
+    }
+  });
+</script>
 
 <%- include('partials/footer'); -%>

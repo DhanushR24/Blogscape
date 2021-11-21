@@ -1,4 +1,35 @@
-const User = require('../models/User')
+const User = require('../models/User');
+const jwt = require('jsonwebtoken');
+
+const handleError = (err) => {
+    const error = {
+        userName: '',
+        email: '',
+        password: '',
+        Bdate: ''
+    };
+
+    if (err.message === 'Invalid email') {
+        error.email = 'Invalid email';
+    }
+    if (err.message === 'Invalid password') {
+        error.password = 'Invalid password';
+    }
+
+    if (err.code === 11000) {
+        error.email = 'Email already exists';
+        return error;
+    }
+
+    if (err.message.includes('User validation failed')) {
+        Object.values(err.errors).forEach(({
+            properties
+        }) => {
+            error[properties.path] = properties.message;
+        })
+    }
+    return error;
+}
 
 module.exports.signup_get = (req, res) => {
     res.render('signup', {
@@ -21,15 +52,35 @@ module.exports.signup_post = async (req, res) => {
         role
     } = req.body;
 
-    const user = await User.create({
-        userName,
-        password,
-        email,
-        Bdate,
-        role
-    })
+    try {
+        const user = await User.create({
+            userName,
+            password,
+            email,
+            Bdate,
+            role
+        })
 
-    res.redirect('/');
+        console.log(user);
+
+        res.cookie('jwt', jwt.sign({
+            id: user._id
+        }, 'secret salt', {
+            expiresIn: 3 * 24 * 60 * 60
+        }), {
+            httpOnly: true,
+            maxAge: 3 * 24 * 60 * 60 * 1000
+        });
+        res.status(200).json({
+            user: user._id
+        });
+    } catch (err) {
+        const errors = handleError(err);
+        res.status(400).json({
+            errors
+        });
+    }
+
 }
 module.exports.login_post = async (req, res) => {
     const {
@@ -37,13 +88,38 @@ module.exports.login_post = async (req, res) => {
         password
     } = req.body;
 
-    const user = await User.findOne({
-        email,
-        password
-    });
+    try {
+        const user = await User.findOne({
+            email
+        });
 
-    if (!user) {
-        return res.status(401).send('Invalid email or password');
+        if (!user) {
+            throw new Error('Invalid email');
+        } else {
+            if (user.password !== password) {
+                throw new Error('Invalid password');
+            }
+            res.cookie('jwt', jwt.sign({
+                id: user._id
+            }, 'secret salt', {
+                expiresIn: 3 * 24 * 60 * 60
+            }), {
+                httpOnly: true,
+                maxAge: 3 * 24 * 60 * 60 * 1000
+            });
+        }
+        res.status(200).json({
+            user: user._id
+        });
+    } catch (err) {
+        const errors = handleError(err);
+        res.status(400).json({
+            errors
+        });
     }
+}
+
+module.exports.logout_get = (req, res) => {
+    res.clearCookie('jwt');
     res.redirect('/');
 }

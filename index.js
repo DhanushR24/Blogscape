@@ -1,14 +1,13 @@
 const express = require('express');
 const mongoose = require('mongoose');
 const morgan = require('morgan');
+const cookieparser = require('cookie-parser');
 const port = process.env.PORT || 5000;
-
+const app = express();
 
 const authRoutes = require('./routers/authRoutes');
-
-// const User = require('./models/User')
-
-const app = express();
+const User = require('./models/User')
+const {checkUser} = require('./middleware/authMiddleware');
 
 // middleware
 app.use(express.static('public'));
@@ -17,6 +16,7 @@ app.use(express.urlencoded({
     extended: true
 }));
 app.use(morgan('tiny'));
+app.use(cookieparser());
 
 // view engine
 app.set('view engine', 'ejs');
@@ -31,10 +31,10 @@ mongoose.connect(dbURI, {
     .catch((err) => console.log(err));
 
 // routes
+app.get('*', checkUser);
 app.get('/', (req, res) => res.render('index', {
     title: 'home'
 }));
-
 
 app.use(authRoutes)
 
