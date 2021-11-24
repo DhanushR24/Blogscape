@@ -119,22 +119,27 @@ header .head_content .content_button{
   padding: 1rem 2rem;
   margin: auto;
   margin-top: 4rem;
-  border: none;
+  border: 3px solid rgb(55, 66, 221);
   border-radius: 10px;
-  background-color: rgb(53, 60, 158);
+  background-color: transparent;
 }
 
 header .head_content .content_button a{
   font-weight: 600;
   letter-spacing: 1px;
   text-decoration: none;
-  color: white;
+  color: rgb(55, 66, 221);
 }
 
-header .head_content .content_button:hover{
+header .head_content .content_button:hover
+{
   background-color: rgb(55, 66, 221);
+  border: none;
   cursor: pointer;
   transition: 0.4s;
+}
+header .head_content .content_button:hover a {
+  color: white;
 }
 
 form h2 {
