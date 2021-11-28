@@ -6,8 +6,11 @@ const port = process.env.PORT || 5000;
 const app = express();
 
 const authRoutes = require('./routers/authRoutes');
-const User = require('./models/User')
-const {checkUser} = require('./middleware/authMiddleware');
+// const User = require('./models/User')
+
+const {
+    checkUser
+} = require('./middleware/authMiddleware');
 
 // middleware
 app.use(express.static('public'));
@@ -27,7 +30,7 @@ mongoose.connect(dbURI, {
         useNewUrlParser: true,
         useUnifiedTopology: true
     })
-    .then((result) => app.listen(port))
+    .then((res) => app.listen(port))
     .catch((err) => console.log(err));
 
 // routes
