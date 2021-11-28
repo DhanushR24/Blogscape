@@ -13,7 +13,8 @@
 body {
   margin: 0;
   padding: 0;
-  /* background: linear-gradient(to right top, #ff6f6f, #ff8363, #ff995a, #ffaf54, #ffc555, #ffbd60, #ffb66b, #ffb076, #ff9592, #f788bb, #c28bdf, #6495ed); */
+  color: white;
+  background: linear-gradient(to right top, #ff6f6f, #ff8363, #ff995a, #ffaf54, #ffc555, #ffbd60, #ffb66b, #ffb076, #ff9592, #f788bb, #c28bdf, #6495ed);
 }
 
 .container-flex {
@@ -48,62 +49,6 @@ body {
   border-bottom: cornflowerblue solid 2px;
 }
 
-/* header {
-  margin: 1rem 1rem 2rem 1rem;
-}
-
-.info_section {
-  width: 100%;
-  margin-bottom: 2rem;
-}
-
-.info_section .info_container {
-  margin: auto;
-
-  width: 80%;
-  height: 275px;
-  padding: 1.5rem;
-  border: none;
-  border-radius: 35px;
-  box-shadow: 5px 5px 9px 9px rgba(77, 77, 250, 0.1);
-}
-
-.info_section .info_container .info_image {
-  width: 45%;
-  box-sizing: border-box;
-  height: inherit;
-
-  padding: 0.5rem;
-}
-.info_section .info_container .info_image img {
-  width: 90%;
-  height: 90%;
-}
-
-.info_section .info_container .info_text {
-  box-sizing: border-box;
-  width: 55%;
-  padding: 1rem;
-}
-
-section {
-  margin-top: 3rem;
-  margin-bottom: 1rem;
-}
-section .get_started {
-  width: fit-content;
-  padding: 1rem 2rem;
-  background-color: #0f256e;
-  border: none;
-  border-radius: 5px;
-  margin: auto;
-}
-
-section .get_started a {
-  text-decoration: none;
-  font-size: 1.5rem;
-  color: white;
-} */
 
 .main_head .header_text h1{
   font-size: 3.4rem;
@@ -112,12 +57,15 @@ section .get_started a {
 
 .main_head .header_text h1 a{
   font-family: 'Caveat', cursive;
-  color: black;
+  color: aliceblue;
+}
+
+.options a{
+  margin-right: 1.2rem;
 }
 
 .options div {
-  margin-right: 1.2rem;
-  padding: 0.5rem 1rem;
+  padding: 0.3rem 1rem;
 }
 
 .options .signup,
@@ -134,10 +82,9 @@ section .get_started a {
 .options .logout:hover,
 .options .profile:hover,
 .options .tasks:hover {
-  background-color: cornflowerblue;
   border-radius: 5px;
   border: none;
-  color: aliceblue;
+  color: rgb(65, 76, 230);
   transition: 0.4s;
 }
 
@@ -145,9 +92,10 @@ section .get_started a {
 .options a,
 .options h3 {
   text-decoration: none;
-  color: black;
+  color: aliceblue;
   list-style: none;
 }
+
 
 header {
   text-align: center;
@@ -171,22 +119,27 @@ header .head_content .content_button{
   padding: 1rem 2rem;
   margin: auto;
   margin-top: 4rem;
-  border: none;
+  border: 3px solid rgb(55, 66, 221);
   border-radius: 10px;
-  background-color: rgb(53, 60, 158);
+  background-color: transparent;
 }
 
 header .head_content .content_button a{
   font-weight: 600;
   letter-spacing: 1px;
   text-decoration: none;
-  color: white;
+  color: rgb(55, 66, 221);
 }
 
-header .head_content .content_button:hover{
+header .head_content .content_button:hover
+{
   background-color: rgb(55, 66, 221);
+  border: none;
   cursor: pointer;
   transition: 0.4s;
+}
+header .head_content .content_button:hover a {
+  color: white;
 }
 
 form h2 {
@@ -196,12 +149,13 @@ form h2 {
 }
 
 form {
-  width: 40%;
+  max-width: 540px;
   margin: 4rem auto;
   padding: 30px;
   box-shadow: 1px 2px 10px 10px rgba(0, 0, 0, 0.04);
   border-radius: 20px;
   background: white;
+  color: darkslategray;
 }
 
 form .form_foot {
@@ -216,18 +170,7 @@ form .form_foot {
   color: #4d4dfa;
 }
 
-/* .image_select{
-  width: fit-content;
-  padding: 0.5rem 1rem;
-  background: #0f256e;
-  color: white;
-  font-size: 1.5vw;
-  border-radius: 5px;
-}
 
-.image_select:hover{
-  cursor: pointer;
-} */
 
 form input {
   padding: 10px 12px;
@@ -252,7 +195,7 @@ form button {
   border: 0;
   text-transform: uppercase;
   font-weight: 700;
-  font-size: 1.5vw;
+  font-size: 1.3vw;
   display: block;
   padding: 10px 16px;
   letter-spacing: 1px;
@@ -273,277 +216,7 @@ form button:hover {
   font-weight: bold;
 }
 
-/* header h1 {
-  font-size: 3rem;
-}
-header h2 {
-  font-size: 2rem;
-}
 
-header .get_started,
-.back_to_courses {
-  width: fit-content;
-  border: none;
-  margin: auto;
-  margin-top: 3rem;
-  background-color: #0f256e;
-  border-radius: 5px;
-}
-
-header .get_started:hover,
-.back_to_courses:hover {
-  background-color: #173494;
-  transition: 0.3s;
-}
-
-header .btn,
-.back_to_courses .btn {
-  padding: 12px 18px;
-  font-weight: bold;
-  display: inline-block;
-  font-size: 1.8em;
-  text-decoration: none;
-  color: white;
-}
-.back_to_courses img {
-  width: 20px;
-  margin-left: 1rem;
-}
-
-.task {
-  width: 70%;
-  margin: auto;
-}
-
-.course_wrapper1,
-.course_wrapper2,
-.course_wrapper3 {
-  width: 100%;
-  margin-top: 5rem;
-  height: 350px;
-}
-
-.course_wrapper2 {
-  background-color: #0f256e;
-}
-
-.course_wrapper2 .inner_wrap .course_info {
-  color: white;
-}
-
-.course_wrapper1 .inner_wrap .course_info .start_course,
-.course_wrapper3 .inner_wrap .course_info .start_course {
-  padding: 0.5rem 1.5rem;
-  width: fit-content;
-  border: none;
-  border-radius: 3px;
-  background-color: #0f256e;
-}
-
-.course_wrapper2 .inner_wrap .course_info .start_course {
-  padding: 0.5rem 1.5rem;
-  width: fit-content;
-  border: none;
-  border-radius: 3px;
-  background-color: #ddd;
-}
-
-.course_wrapper1 .inner_wrap .course_info .start_course a,
-.course_wrapper2 .inner_wrap .course_info .start_course a,
-.course_wrapper3 .inner_wrap .course_info .start_course a {
-  text-decoration: none;
-  font-size: 1.2rem;
-  font-weight: 500;
-  color: #ddd;
-}
-
-.course_wrapper2 .inner_wrap .course_info .start_course a {
-  color: #0f256e;
-}
-
-.course_wrapper1 .inner_wrap,
-.course_wrapper2 .inner_wrap,
-.course_wrapper3 .inner_wrap {
-  width: 60%;
-  box-sizing: border-box;
-  margin: auto;
-  height: inherit;
-  padding: 1.5rem;
-}
-
-.course_wrapper1 .inner_wrap div,
-.course_wrapper2 .inner_wrap div,
-.course_wrapper3 .inner_wrap div {
-  width: 47%;
-}
-
-.course_wrapper1 .inner_wrap h1,
-.course_wrapper2 .inner_wrap h1,
-.course_wrapper3 .inner_wrap h1 {
-  font-size: 2.5rem;
-}
-
-.course_wrapper1 .inner_wrap h3,
-.course_wrapper2 .inner_wrap h3,
-.course_wrapper3 .inner_wrap h3 {
-  font-size: 1.5rem;
-}
-
-.iframe_container {
-  margin: auto;
-  margin-top: 4rem;
-  width: 80%;
-  height: fit-content;
- 
-  padding: 1rem;
-}
-
-.iframe_container .course_text {
-  border: 1px solid blue;
-  box-sizing: border-box;
-  padding: 1rem;
-  width: 50%;
-}
-
-.iframe_container .course_text h1,
-.iframe_container .course_text h2,
-.iframe_container .course_text h3 {
-  margin: 0 0 1rem 0;
-}
-
-.iframe_container .course_text .flag {
-  width: fit-content;
-  border: none;
-  background-color: grey;
-  padding: 0.5rem;
-}
-
-.iframe_container .course_text .flag:hover {
-  cursor: pointer;
-}
-
-.profile_header {
-  margin-top: 2rem;
-}
-.profile_header h1 {
-  text-align: center;
-}
-
-.profile_container {
-  width: 90%;
-  align-items: flex-start;
-  box-sizing: border-box;
-  padding: 1rem;
-  margin: 2rem auto;
-  text-align: center;
-}
-
-.profile_container .photo {
-  width: 30%;
-  height: 165px;
-  margin: 0;
-  margin-left: 1rem;
-  border: none;
- 
-}
-
-.profile_container .photo .profile_photo{
-  width: 100%;
-}
-
-.profile_container .profile_photo img {
-  width: 160px;
-  height: 160px;
-  border-radius: 50%;
- 
-}
-
-
-.profile_container .profile_photo label {
-  border: none;
-  width: fit-content;
-  padding: 0.5rem 1rem;
-  margin: auto;
-  margin-top: 1rem;
-  background: #0f256e;
-  border-radius: 5px;
-  color: white;
-}
-
-.profile_container .profile_photo label:hover{
-  cursor: pointer;
-}
-
-.profile_container .profile_form {
-  width: 50%;
-  margin: 0;
-  margin-right: 1rem;
-
-  padding: 1rem;
-}
-
-
-
-.profile_container .profile_form form {
-  box-sizing: border-box;
-  width: 100%;
-  margin: 0;
-  box-shadow: none;
-  text-align: left;
-}
-
-.profile_container .profile_form form label {
-  font-size: 1.6rem;
-}
-
-.profile_container .profile_form form input {
-  font-size: 1.3rem;
-}
-
-.profile_container .profile_form form button {
-  margin-left: 0;
-}
-
-.task {
-  box-sizing: border-box;
-}
-
-.task h1 {
-  text-align: center;
-}
-
-.task a {
-  text-decoration: none;
-}
-
-.task a .modify {
-  box-sizing: border-box;
-  margin-bottom: 1rem;
-  text-align: center;
-  width: fit-content;
-  background-color: rgb(10, 10, 65);
-  color: white;
-  display: inline;
-  padding: 0.5rem;
-  border-radius: 8px;
-}
-
-.task a .modify:hover{
-  cursor: pointer;
-}
-
-.task a .add_task {
-  font-size: 2rem;
-  box-sizing: border-box;
-  text-align: center;
-  background-color: rgb(10, 10, 65);
-  color: white;
-  width: 50%;
-  margin: auto;
-  margin-top: 1.5rem;
-  padding: 1rem;
-  border-radius: 8px;
-} */
 
 footer {
   text-align: center;
