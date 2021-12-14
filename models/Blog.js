@@ -1,23 +1,41 @@
 const mongoose = require('mongoose');
-const Schema = mongoose.schema;
+const Schema = mongoose.Schema;
 
 const BlogSchema = new Schema({
     UserId: {
         type: String
     },
-    Category: {
+    title: {
         type: String,
-        enum: ["", "", "", ""]
+        required: true
     },
-    Like: {
-        type: Integer
+    description: {
+        type: String,
+        required: true
+    },
+    category: {
+        type: String,
+        default: "other"
+    },
+    username: {
+        type: String,
+        required: true
+    },
+    profile: {
+        type: String,
+        default: "images/animals/female-lion.svg"
+    },
+    likes: {
+        type: Number,
+        default: 0
     },
 
-    Comment: {
-        type: String
-    }
+    // Comment: {
+    //     type: String,
+    //     default: ""
+    // }
 });
 
 const Blog = mongoose.model("Blog", BlogSchema);
 
-module.exports = {Blog};
+module.exports = Blog;

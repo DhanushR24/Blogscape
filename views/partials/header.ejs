@@ -14,9 +14,6 @@
   <div class="header">
     <div class="head_container container-flex">
       <div class="main_head container-flex">
-        <!-- <div class="header_icon">
-            <a href="/"><img src="head_icon.png" alt="" /></a>
-          </div> -->
         <div class="header_text">
           <h1 class="head text"><a href="/">Blogscape</a></h1>
         </div>
@@ -25,14 +22,15 @@
         <% if(user) { %>
         <h3>
           <div class="greet">
-            <a href="/tasks" style="text-decoration: none">Hello, <%= user.userName %></a>
+            <a href="/" style="text-decoration: none">Hello, <%= user.userName %></a>
           </div>
         </h3>
+
+        <a href="/blogs">
+          <div class="blogs">Blogs</div>
+        </a>
         <a href="/profile">
           <div class="profile">Profile</div>
-        </a>
-        <a href="/usertasks">
-          <div class="tasks">Create</div>
         </a>
         <a href="/logout">
           <div class="logout">Logout</div>
@@ -48,11 +46,12 @@
       </div>
     </div>
   </div>
+  
   <script>
     const loc = window.location.href.split('/');
-    const active = loc[loc.length-1]
+    const active = loc[loc.length - 1]
 
-    if(active) {
+    if (active) {
       document.querySelector(`.options a[href="/${active}"]`).classList.add('current-page')
     }
   </script>

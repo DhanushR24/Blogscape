@@ -1,6 +1,25 @@
 const User = require('../models/User');
 const jwt = require('jsonwebtoken');
 
+const getProfilePic =()=> {
+    
+    const picPaths = {
+        0: 'images/animals/bird.svg',
+        1: 'images/animals/lion.svg',
+        2: 'images/animals/llama.svg',
+        3: 'images/animals/orangutan.svg',
+        4: 'images/animals/rabbit.svg',
+        5: 'images/animals/snake.svg',
+        6: 'images/animals/white-jaguar.svg',
+        7: 'images/animals/wolf.svg',
+        8: 'images/animals/owl.svg',
+        9: 'images/animals/female-lion.svg',
+        10: 'images/animals/female-lion.svg',
+    };
+    
+    const num = Math.floor(Math.random() * 11);
+    return picPaths[num];
+}
 const handleError = (err) => {
     const error = {
         userName: '',
@@ -52,13 +71,16 @@ module.exports.signup_post = async (req, res) => {
         role
     } = req.body;
 
+    const profile = getProfilePic();
+
     try {
         const user = await User.create({
             userName,
             password,
             email,
             Bdate,
-            role
+            role,
+            profile
         })
 
         console.log(user);

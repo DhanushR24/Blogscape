@@ -14,7 +14,7 @@ const userSchema = new schema({
     email: {
         type: String,
         required: [true, 'Email is required'],
-        unique: true,
+        unique: [true, 'Email is already in use'],
         validate: [isEmail, 'Please enter a valid email']
     },
     Bdate: {
@@ -25,6 +25,10 @@ const userSchema = new schema({
     role: {
         type: String,
         default: 'user'
+    },
+    profile: {
+        type: String,
+        default: 'images/animals/female-lion.svg'
     }
 });
 

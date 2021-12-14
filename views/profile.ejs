@@ -1,0 +1,47 @@
+<%- include('partials/header'); -%>
+
+<div class="profile-container">
+    <form action="" class="profile">
+        <h2>Profile</h2>
+        <img src="<%= user.profile %>" onerror="this.src='images/animals/female-lion.svg'" alt="Profile pic"
+            width="200px" height="200px" style="border-radius: 50%; display: block; margin: 0 auto;">
+        <div class="ele">
+            <h3>Email</h3>
+            <input type="text" name="email" value="<%= user.email %>" readonly style="cursor: not-allowed;">
+        </div>
+        <div class="ele">
+            <h3>UserName</h3>
+            <input type="text" name="userName" value="<%= user.userName %>" readonly style="cursor: not-allowed;">
+        </div>
+        <div class="ele">
+            <h3>Password</h3>
+            <input type="password" name="password" value="<%= user.password %>" readonly style="cursor: not-allowed;">
+            <i class="far fa-eye" id="togglePassword" style="cursor: pointer;"></i>
+        </div>
+        <div class="ele">
+            <h3>Birthdate</h3>
+            <input type="text" name='Bdate' value="<%= user.Bdate.toString().substring(0, 15) %>" readonly
+                style="cursor: not-allowed;">
+        </div>
+        <div class="ele">
+            <h3>Role</h3>
+            <input type="text" name="role" value="<%= user.role %>" readonly style="cursor: not-allowed;">
+        </div>
+
+        <input type="text" name="id" value="<%= user._id %>" style="display: none;">
+        <!-- <input type="submit" value="Update"> -->
+    </form>
+
+    <script defer>
+        const togglePassword = document.getElementById('togglePassword');
+        togglePassword.addEventListener('click', () => {
+            const password = document.querySelector('input[name="password"]');
+            if (password.type === 'password') {
+                password.type = 'text';
+            } else {
+                password.type = 'password';
+            }
+        });
+    </script>
+
+    <%- include('partials/footer'); -%>

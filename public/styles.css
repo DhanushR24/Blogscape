@@ -8,13 +8,42 @@
 
 * {
   font-family: 'Poppins', sans-serif;
-  /* font-family: "Roboto Mono", monospace; */
-}
-body {
   margin: 0;
   padding: 0;
+  box-sizing: border-box;
+
+  overflow: auto;
+}
+
+html, body {
+  height: 100%;
+  width: 100%;
+}
+body {
   color: white;
-  background: linear-gradient(to right top, #ff6f6f, #ff8363, #ff995a, #ffaf54, #ffc555, #ffbd60, #ffb66b, #ffb076, #ff9592, #f788bb, #c28bdf, #6495ed);
+  /* background: linear-gradient(to right top, #ff6f6f, #ff8363, #ff995a, #ffaf54, #ffc555, #ffbd60, #ffb66b, #ffb076, #ff9592, #f788bb, #c28bdf, #6495ed); */
+
+  background: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.3)), url('./images/background-img.jpg');
+  background-position: left;
+  animation: 40s slide infinite linear alternate-reverse;
+}
+
+@keyframes slide {
+  from {
+    background-position: left;
+  }
+
+  to {
+    background-position: right;
+  }
+}
+
+i.fas {
+  color: darkslategray;
+}
+
+.text-shadow {
+  text-shadow: 5px 5px 2px rgba(0, 0, 0, 0.5);
 }
 
 .container-flex {
@@ -27,7 +56,7 @@ body {
   margin: 0;
   width: 100%;
   /* background: rgb(10, 10, 65); */
-  
+
 }
 
 .header .head_container {
@@ -46,21 +75,21 @@ body {
 }
 
 .current-page {
-  border-bottom: cornflowerblue solid 2px;
+  border-bottom: white solid 2px;
 }
 
 
-.main_head .header_text h1{
+.main_head .header_text h1 {
   font-size: 3.4rem;
-  
+
 }
 
-.main_head .header_text h1 a{
+.main_head .header_text h1 a {
   font-family: 'Caveat', cursive;
   color: aliceblue;
 }
 
-.options a{
+.options a {
   margin-right: 1.2rem;
 }
 
@@ -73,7 +102,7 @@ body {
 .options .logout,
 .options .profile,
 .options .greet,
-.options .tasks {
+.options .blogs {
   font-size: 1.5rem;
 }
 
@@ -81,10 +110,11 @@ body {
 .options .login:hover,
 .options .logout:hover,
 .options .profile:hover,
-.options .tasks:hover {
+.options .blogs:hover {
   border-radius: 5px;
-  border: none;
+  /* border: none; */
   color: rgb(65, 76, 230);
+  text-shadow: 0 0 5px rgb(65, 76, 230);
   transition: 0.4s;
 }
 
@@ -102,45 +132,39 @@ header {
   font-size: 1.5rem;
 }
 
-header .head_content{
+header .head_content {
   width: 90%;
   margin: auto;
-  padding: 5rem 0;
+  padding: 7em 0;
 }
 
 header .head_content .content_text h1,
-header .head_content .content_text h3{
-  margin:0;
+header .head_content .content_text h3 {
+  margin: 0;
   margin-bottom: 1rem;
 }
 
-header .head_content .content_button{
+header .head_content .content_button {
   width: fit-content;
   padding: 1rem 2rem;
-  margin: auto;
   margin-top: 4rem;
   border: 3px solid rgb(55, 66, 221);
   border-radius: 10px;
   background-color: transparent;
-}
-
-header .head_content .content_button a{
   font-weight: 600;
   letter-spacing: 1px;
   text-decoration: none;
   color: rgb(55, 66, 221);
+  cursor: pointer;
+  color: white;
+  background-color: rgb(55, 66, 221);
 }
 
-header .head_content .content_button:hover
-{
-  background-color: rgb(55, 66, 221);
-  border: none;
-  cursor: pointer;
-  transition: 0.4s;
+
+header .head_content .content_button:hover {
+  box-shadow: 0 0 10px rgb(55, 66, 221);
 }
-header .head_content .content_button:hover a {
-  color: white;
-}
+
 
 form h2 {
   font-size: 2.4em;
@@ -161,10 +185,12 @@ form {
 form .form_foot {
   text-align: center;
 }
+
 .form_foot p a {
   text-decoration: none;
   color: black;
 }
+
 .form_foot p a:hover {
   text-decoration: underline;
   color: #4d4dfa;
@@ -203,12 +229,14 @@ form button {
   width: 30%;
   height: 60px;
 }
+
 form button:hover {
   cursor: pointer;
   background: rgb(139, 139, 255);
   transition: 0.4s;
   letter-spacing: 3px;
 }
+
 .error {
   color: #e61212;
   margin: 10px 2px;
@@ -216,46 +244,40 @@ form button:hover {
   font-weight: bold;
 }
 
+#togglePassword {
+  position: relative;
+  left: -2rem;
+}
+
+#blog-submit {
+    padding: 1em 0.5em;
+    margin-top: 1em;
+    border: 3px solid rgb(55, 66, 221);
+    border-radius: 10px;
+    color: rgb(55, 66, 221);
+    cursor: pointer;
+    color: white;
+    background-color: rgb(55, 66, 221);
+}
+  
+#blog-submit:hover {
+    box-shadow: 0 0 10px rgb(55, 66, 221);
+  }
+
+
 
 
 footer {
   text-align: center;
-  margin: 200px 0 30px 0;
+  /* margin: 200px 0 30px 0; */
+  position: absolute;
+  bottom: 0;
+
   width: 100%;
-  color: rgb(121, 117, 117);
+  color: rgba(256, 256, 256, 0.5);
+  background-color: rgba(0, 0, 0, 0.5);
   font-size: 1.5rem;
   height: 2.5rem;
-}
-
-@media screen and (max-width: 1370px) {
-  .iframe_container {
-    width: 90%;
-  }
-}
-
-@media screen and (max-width: 1245px) {
-  .iframe_container {
-    flex-direction: column;
-    flex-wrap: nowrap;
-    width: 100%;
-    height: fit-content;
-    box-sizing: border-box;
-  }
-
-  .iframe_container .course_text {
-    box-sizing: border-box;
-    width: inherit;
-    margin-bottom: 1rem;
-    font-size: 2.5vw;
-  }
-  .iframe_container .video_container {
-    box-sizing: border-box;
-    width: inherit;
-    padding: 0.5rem;
-  }
-  .iframe_container .video_container iframe {
-    width: 100%;
-  }
 }
 
 @media screen and (max-width: 1000px) {
@@ -272,12 +294,14 @@ footer {
 }
 
 @media screen and (max-width: 850px) {
+
   body,
   footer {
     font-size: 2.5vw;
     margin: 0;
     padding: 0;
   }
+
   .container-flex {
     display: flex;
     flex-direction: column;
@@ -298,6 +322,7 @@ footer {
   .header_icon img {
     width: 100%;
   }
+
   .header_text h1 {
     display: none;
   }
@@ -313,7 +338,7 @@ footer {
   }
 
 
-  form{
+  form {
     width: 90%;
     padding: .5rem;
     font-size: 2.5vw;
@@ -321,130 +346,20 @@ footer {
     box-shadow: none;
   }
 
-  form label{
-      font-size: 4vw;
-  }
-  
-  form input{
-    width: inherit;
-  }
-
-  form .signup_img label{
-    font-size: 2.5vw;
-  }
-  
-  button{
-    font-size: 3vw;
-  }
-
-  .info_section .info_container {
-    box-shadow: none;
-    height: fit-content;
-    border-radius: 0;
-    border-bottom: 3px solid rgba(15, 37, 110, 0.7);
-  }
-  .info_section .info_container .info_text {
-    width: 100%;
-  }
-  .info_section .info_container .info_image {
-    width: 95%;
-  }
-
-  .info_section .info_container .info_image img {
-    width: inherit;
-  }
-
-  .task {
-    width: 90%;
-  }
-
-  .task a .add_task {
-    font-size: 4vw;
-    margin-bottom: 3rem;
-  }
-
-  .course_wrapper1,
-  .course_wrapper2,
-  .course_wrapper3 {
-    height: fit-content;
-    margin-top: 2rem;
-  }
-
-  .course_wrapper1 .inner_wrap,
-  .course_wrapper2 .inner_wrap,
-  .course_wrapper3 .inner_wrap {
-    width: 90%;
-    height: fit-content;
-  }
-
-  .course_wrapper1 .inner_wrap .course_info,
-  .course_wrapper2 .inner_wrap .course_info,
-  .course_wrapper3 .inner_wrap .course_info {
-    width: 90%;
-    text-align: center;
-  }
-
-  .course_wrapper1 .inner_wrap .course_info h1,
-  .course_wrapper2 .inner_wrap .course_info h1,
-  .course_wrapper3 .inner_wrap .course_info h1 {
-    font-size: 4.5vw;
-  }
-
-  .course_wrapper1 .inner_wrap .course_info h3,
-  .course_wrapper2 .inner_wrap .course_info h3,
-  .course_wrapper3 .inner_wrap .course_info h3 {
-    font-size: 3vw;
-  }
-
-  .course_wrapper1 .inner_wrap .course_info .start_course,
-  .course_wrapper2 .inner_wrap .course_info .start_course,
-  .course_wrapper3 .inner_wrap .course_info .start_course {
-    margin: auto;
-  }
-
-  .course_wrapper2 .inner_wrap .course_info .start_course {
-    margin-bottom: 1rem;
-  }
-
-  .course_wrapper3 .inner_wrap a .course_image {
-    width: 100%;
-  }
-
-  .course_wrapper3 .inner_wrap a .course_image img {
-    height: 50vh;
-  }
-
-  .profile_header h1 {
+  form label {
     font-size: 4vw;
   }
 
-  .profile_container .photo{
-    height: fit-content;
-    width: 50%;
+  form input {
+    width: inherit;
   }
 
-  .profile_container .photo .profile_photo label{
+  form .signup_img label {
     font-size: 2.5vw;
   }
 
-  .profile_container .profile_form {
-    width: 95%;
-  }
-
-  .profile_container .profile_form form {
-    padding: 0;
-  }
-
-  .profile_container .profile_form form label,
-  .profile_container .profile_form form input,
-  .profile_container .profile_form form button {
+  button {
     font-size: 3vw;
-  }
-
-  .profile_container .profile_form form button {
-    width: 30%;
-    margin: auto;
-    margin-top: 2rem;
   }
 
   footer {
@@ -457,9 +372,11 @@ footer {
     margin-top: 1rem;
     width: 60%;
   }
+
   .header_icon img {
     width: 100%;
   }
+
   .header_text h1 {
     display: none;
   }
@@ -469,22 +386,8 @@ footer {
   header div a {
     font-size: 7vw;
   }
+
   header h2 {
     font-size: 4vw;
-  }
-
-  .back_to_courses {
-    margin-bottom: 1rem;
-  }
-  .back_to_courses .btn {
-    display: none;
-  }
-
-  .back_to_courses .backtrack {
-    width: fit-content;
-    padding: 0.8rem 1.5rem;
-  }
-  .back_to_courses .backtrack img {
-    margin: auto;
   }
 }

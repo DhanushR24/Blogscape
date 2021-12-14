@@ -6,6 +6,7 @@ const port = process.env.PORT || 5000;
 const app = express();
 
 const authRoutes = require('./routers/authRoutes');
+const blogRoutes = require('./routers/blogRoutes');
 // const User = require('./models/User')
 
 const {
@@ -40,6 +41,11 @@ app.get('/', (req, res) => res.render('index', {
 }));
 
 app.use(authRoutes)
+app.get('/profile', (req, res) => res.render('profile', {
+    title: 'profile'
+}));
+
+app.use(blogRoutes);
 
 app.use((req, res) => {
     res.render('404', {
