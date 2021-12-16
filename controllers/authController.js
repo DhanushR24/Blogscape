@@ -13,11 +13,14 @@ const getProfilePic =()=> {
         6: 'images/animals/white-jaguar.svg',
         7: 'images/animals/wolf.svg',
         8: 'images/animals/owl.svg',
-        9: 'images/animals/female-lion.svg',
-        10: 'images/animals/female-lion.svg',
+        9: 'images/animals/panda.svg',
+        10: 'images/animals/penguin.svg',
+        11: 'images/animals/lizard.svg',
+        12: 'images/animals/dog.svg',
+        13: 'images/animals/deer.svg',
     };
     
-    const num = Math.floor(Math.random() * 11);
+    const num = Math.floor(Math.random() * 14);
     return picPaths[num];
 }
 const handleError = (err) => {

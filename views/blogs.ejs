@@ -2,7 +2,7 @@
 
 <div id="blogs-container">
     <div id="blog-options">
-        <a href="/createBlog" class="create-blog-link">Create blog</a>
+        <a href="/createBlog" id="create-blog-link">Create blog <span>+</span></a>
         <div id="categories">
             <h3>Categories</h3>
             <ul>
@@ -27,23 +27,55 @@
             </ul>
         </div>
     </div>
-    <div id="blogs">
+    <!-- <div id="blogs">
         <div class="blog">
             <div class="user-detail">
-                <img src='images/animals/female-lion.svg' alt="Profile pic" width="80px" height="80px"
-                    style="border-radius: 50%; display: block;">
-                <h2>Name</h2>
+                <img src='images/animals/female-lion.svg' onerror="this.src='images/animals/female-lion.svg'"
+                    alt="Profile pic" width="80px" height="80px" style="border-radius: 50%; display: block;">
+                <div class="user-text">
+                    <h2>Name</h2>
+                    <p style="color: #808080;">name@email.com</p>
+                </div>
             </div>
             <div class="blog-detail">
                 <h3>Title</h3>
                 <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Quisquam, quidem. </p>
             </div>
         </div>
+        <div class="like">
+            <i class="fas fa-heart"></i>
+            <p style="margin: 0 1em;">0</p>
+        </div>
+    </div> -->
+
+    <div id="blogs">
+        <% allblogs.forEach(ele => { %>
+        <div class="blog" style="border-right: 10px solid greenyellow;">
+            <div class="user-detail">
+                <img src="<%= ele.profile %>" onerror="this.src='images/animals/female-lion.svg'" alt="Profile pic"
+                    width="80px" height="80px" style="border-radius: 50%; display: block;">
+                <div class="user-text">
+                    <h2><%= ele.username %></h2>
+                    <p style="color: #808080;">name@email.com</p>
+                </div>
+            </div>
+            <div class="blog-detail">
+                <h3><%= ele.title %> </h3>
+                <p><%= ele.description %> </p>
+            </div>
+            <div class="like">
+                <i class="fas fa-heart"></i>
+                <p style="margin: 0 1em;"><%= ele.likes  %> </p>
+            </div>
+        </div>
+        <% }); %>
     </div>
 </div>
 
 <script defer>
-
+    const blogs = `<%= allblogs %>`;
+    console.log(typeof(blogs));
+    // console.log(blogs);
 </script>
 
 <%- include('partials/footer'); -%>

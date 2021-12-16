@@ -9,7 +9,7 @@ module.exports.get_blogs = (req, res) => {
         // res.send(blogs);
         res.render('blogs', {
             title: 'blogs',
-            blogs
+            allblogs: blogs
         });
     });
 }
