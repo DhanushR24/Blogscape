@@ -2,79 +2,127 @@
 
 <div id="blogs-container">
     <div id="blog-options">
-        <a href="/createBlog" id="create-blog-link">Create blog <span>+</span></a>
+        <a href="/createBlog" id="create-blog-link" class="content_button">Create blog <span>+</span></a>
         <div id="categories">
             <h3>Categories</h3>
             <ul>
                 <li>
-                    <p class="category active c1">Technology</p>
+                    <p class="category Technology active c1">Technology</p>
                 </li>
                 <li>
-                    <p class="category active c2">Science</p>
+                    <p class="category Science active c2">Science</p>
                 </li>
                 <li>
-                    <p class="category active c3">Sports</p>
+                    <p class="category Sports active c3">Sports</p>
                 </li>
                 <li>
-                    <p class="category active c4">Entertainment</p>
+                    <p class="category Entertainment active c4">Entertainment</p>
                 </li>
                 <li>
-                    <p class="category active c5">Health</p>
+                    <p class="category Health active c5">Health</p>
                 </li>
                 <li>
-                    <p class="category active c6">Other</p>
+                    <p class="category Other active c6">Other</p>
                 </li>
             </ul>
         </div>
     </div>
-    <!-- <div id="blogs">
-        <div class="blog">
-            <div class="user-detail">
-                <img src='images/animals/female-lion.svg' onerror="this.src='images/animals/female-lion.svg'"
-                    alt="Profile pic" width="80px" height="80px" style="border-radius: 50%; display: block;">
-                <div class="user-text">
-                    <h2>Name</h2>
-                    <p style="color: #808080;">name@email.com</p>
-                </div>
-            </div>
-            <div class="blog-detail">
-                <h3>Title</h3>
-                <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Quisquam, quidem. </p>
-            </div>
-        </div>
-        <div class="like">
-            <i class="fas fa-heart"></i>
-            <p style="margin: 0 1em;">0</p>
-        </div>
-    </div> -->
 
     <div id="blogs">
-        <% allblogs.forEach(ele => { %>
-        <div class="blog" style="border-right: 10px solid greenyellow;">
+        <%# allblogs.forEach(ele => { %>
+        <!-- <div class="blog" style="border-right: 10px solid greenyellow;">
             <div class="user-detail">
-                <img src="<%= ele.profile %>" onerror="this.src='images/animals/female-lion.svg'" alt="Profile pic"
+                <img src="<%#= ele.profile %>" onerror="this.src='images/animals/female-lion.svg'" alt="Profile pic"
                     width="80px" height="80px" style="border-radius: 50%; display: block;">
                 <div class="user-text">
-                    <h2><%= ele.username %></h2>
+                    <h2><%#= ele.username %></h2>
                     <p style="color: #808080;">name@email.com</p>
                 </div>
             </div>
             <div class="blog-detail">
-                <h3><%= ele.title %> </h3>
-                <p><%= ele.description %> </p>
+                <h3><%#= ele.title %> </h3>
+                <p><%#= ele.description %> </p>
             </div>
             <div class="like">
                 <i class="fas fa-heart"></i>
-                <p style="margin: 0 1em;"><%= ele.likes  %> </p>
+                <p style="margin: 0 1em;"><%#= ele.likes  %> </p>
             </div>
-        </div>
-        <% }); %>
+        </div> -->
+        <!-- <%# }); %> -->
     </div>
 </div>
 
 <script defer>
-    const blogs = `<%= allblogs %>`;
-    console.log(typeof(blogs));
+    const blogs = document.querySelector('#blogs');
+    const categories = document.getElementsByClassName('category');
+
+    const colorCategory = {
+        'Technology': '#00E4BA',
+        'Science': '#0086FD',
+        'Sports': '#FF7D5C',
+        'Entertainment': '#F9F871',
+        'Health': '#FFBF4C',
+        'Other': '#D11AB8'
+    }
+
+    let allBlogs = [];
+
+    fetch('/loadBlogs')
+        .then(res => res.json())
+        .then(data => {
+            allBlogs = data;
+            renderBlogs();
+        })
+        .catch(err => console.log(err));
+
+    const renderBlogs = () => {
+        blogs.innerHTML = "";
+        let selectedCategories = [];
+        Array.from(categories).forEach(ele => {
+            if (ele.classList.contains('active')) {
+                selectedCategories.push(ele.classList[1]);
+            }
+        });
+        console.log("Selected categories: ", selectedCategories);
+
+        allBlogs.forEach(ele => {
+            console.log(ele.category);
+            if (selectedCategories.includes(ele.category)) {
+                let blog = `
+                    <div class="blog" style="border-right: 10px solid ${colorCategory[ele.category]};">
+                        <div class="user-detail">
+                            <img src="${ele.profile}" onerror="this.src='images/animals/female-lion.svg'" alt="Profile pic"
+                                width="80px" height="80px" style="border-radius: 50%; display: block;">
+                            <div class="user-text">
+                                <h2>${ele.username || " "}</h2>
+                                <p style="color: #808080;">name@email.com</p>
+                            </div>
+                        </div>
+                        <div class="blog-detail">
+                            <h3>${ele.title}</h3>
+                            <p>${ele.description}</p>
+                        </div>
+                        <div class="like">
+                            <i class="fas fa-heart"></i>
+                            <p style="margin: 0 1em;">${ele.likes}%> </p>
+                        </div>
+                    </div>
+                    `;
+                blogs.innerHTML += blog;
+
+            }
+
+        })
+    }
+
+    Array.from(categories).forEach((category) => {
+        category.addEventListener('click', (e) => {
+            e.target.classList.toggle('active');
+            console.log("click");
+            renderBlogs();
+        })
+    })
+
     // console.log(blogs);
 </script>
 
