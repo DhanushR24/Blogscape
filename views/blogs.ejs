@@ -29,26 +29,7 @@
     </div>
 
     <div id="blogs">
-        <%# allblogs.forEach(ele => { %>
-        <!-- <div class="blog" style="border-right: 10px solid greenyellow;">
-            <div class="user-detail">
-                <img src="<%#= ele.profile %>" onerror="this.src='images/animals/female-lion.svg'" alt="Profile pic"
-                    width="80px" height="80px" style="border-radius: 50%; display: block;">
-                <div class="user-text">
-                    <h2><%#= ele.username %></h2>
-                    <p style="color: #808080;">name@email.com</p>
-                </div>
-            </div>
-            <div class="blog-detail">
-                <h3><%#= ele.title %> </h3>
-                <p><%#= ele.description %> </p>
-            </div>
-            <div class="like">
-                <i class="fas fa-heart"></i>
-                <p style="margin: 0 1em;"><%#= ele.likes  %> </p>
-            </div>
-        </div> -->
-        <!-- <%# }); %> -->
+        <!-- The blog contents go here :) -->
     </div>
 </div>
 
@@ -89,7 +70,7 @@
             console.log(ele.category);
             if (selectedCategories.includes(ele.category)) {
                 let blog = `
-                    <div class="blog" style="border-right: 10px solid ${colorCategory[ele.category]};">
+                    <div class="blog" style="border-right: 15px solid ${colorCategory[ele.category]};">
                         <div class="user-detail">
                             <img src="${ele.profile}" onerror="this.src='images/animals/female-lion.svg'" alt="Profile pic"
                                 width="80px" height="80px" style="border-radius: 50%; display: block;">

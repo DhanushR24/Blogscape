@@ -157,13 +157,14 @@ header .head_content .content_button {
   margin-top: 4rem;
   border: 3px solid rgb(55, 66, 221);
   border-radius: 10px;
-  background-color: transparent;
+
   font-weight: 600;
   letter-spacing: 1px;
   text-decoration: none;
-  color: rgb(55, 66, 221);
+
   cursor: pointer;
   color: white;
+
   background-color: rgb(55, 66, 221);
 }
 
@@ -278,6 +279,7 @@ form button:hover {
   width: 80%;
   
   min-width: 800px;
+  min-height: 90vh;
 
   margin: 2em auto;
 }
@@ -299,6 +301,12 @@ form button:hover {
   overflow: hidden;
 }
 
+#categories h3 {
+  margin-top: 1em;
+  color: #808080;
+  text-align: center;
+}
+
 .category {
   padding: 0.5em;
   text-align: center;
@@ -306,6 +314,8 @@ form button:hover {
   cursor: pointer;
   
   border-left: 3px solid transparent;
+
+  transition: 0.75s ease-in-out;
 }
 
 .category:hover {
@@ -317,12 +327,12 @@ form button:hover {
   padding: 0.5em 1.5em;
   margin: 0.5em;
   
+  border-left: 3px solid #00E4BA;
   /* border-radius: 10px; */
 }
 .c1.active {
-  border-left: 3px solid #00E4BA;
-  /* color: white; */
-  /* background-color: #00E4BA; */
+  color: white;
+  background-color: #00E4BA;
 }
 
 .c2 {
