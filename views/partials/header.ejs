@@ -44,13 +44,43 @@
           <div class="login">Login</div>
         </a>
         <% } %>
+        <div id="mode" style="color: white;">
+          <i class="fas fa-sun fa-sm" ></i>
+        </div>
       </div>
     </div>
   </div>
   
-  <script>
+  <script defer>
+    
+    const root = document.querySelector(':root');
+    const mode = document.getElementById('mode');
+
+    if(!document.cookie) {
+      document.cookie = "mode=light";
+    }
+
+    var getMode = document.cookie.split("=")[1];
+    if(getMode == "dark") {
+      mode.innerHTML = '<i class="fas fa-moon fa-sm" ></i>';
+      root.classList.add('active');
+      
+    } else {
+      mode.innerHTML = '<i class="fas fa-sun fa-sm" ></i>';
+      root.classList.remove('active');
+    }
+
     const loc = window.location.href.split('/');
     const active = loc[loc.length - 1]
+
+    mode.addEventListener('click', () => {
+      getMode = document.cookie.split("=")[1];
+      mode.querySelector('i').classList.toggle('fa-sun');
+      mode.querySelector('i').classList.toggle('fa-moon');
+      root.classList.toggle('active');
+
+      document.cookie = `mode=${getMode == 'light'? 'dark' : 'light'}`;
+    });
 
     if (active) {
       document.querySelector(`.options a[href="/${active}"]`).classList.add('current-page')

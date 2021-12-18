@@ -36,6 +36,8 @@
 <script defer>
     const blogs = document.querySelector('#blogs');
     const categories = document.getElementsByClassName('category');
+    const noblogs = document.querySelector('.noblogs');
+
 
     const colorCategory = {
         'Technology': '#00E4BA',
@@ -64,12 +66,21 @@
                 selectedCategories.push(ele.classList[1]);
             }
         });
-        console.log("Selected categories: ", selectedCategories);
+        // console.log("Selected categories: ", selectedCategories);
 
-        allBlogs.forEach(ele => {
-            console.log(ele.category);
-            if (selectedCategories.includes(ele.category)) {
-                let blog = `
+        if (allBlogs.length == 0) {
+            blog.innerHTML = `
+                <div class="noblogs">
+                    <h1>No blogs yet!</h1>
+                    <p>Create a blog to get started!</p>
+                </div>
+            `;
+            console.log(1);
+        } else {
+
+            allBlogs.forEach(ele => {
+                if (selectedCategories.includes(ele.category)) {
+                    let blog = `
                     <div class="blog" style="border-right: 15px solid ${colorCategory[ele.category]};">
                         <div class="user-detail">
                             <img src="${ele.profile}" onerror="this.src='images/animals/female-lion.svg'" alt="Profile pic"
@@ -89,17 +100,18 @@
                         </div>
                     </div>
                     `;
-                blogs.innerHTML += blog;
+                    blogs.innerHTML += blog;
 
-            }
+                }
 
-        })
+            })
+
+        }
     }
 
     Array.from(categories).forEach((category) => {
         category.addEventListener('click', (e) => {
             e.target.classList.toggle('active');
-            console.log("click");
             renderBlogs();
         })
     })
