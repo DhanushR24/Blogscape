@@ -15,21 +15,21 @@
         </div>
         <div class="ele">
             <h3>Password</h3>
-            <input type="password" name="password" value="<%= user.password %>" readonly style="cursor: not-allowed;">
+            <input type="password" name="password" value="<%= user.password %>" >
             <i class="far fa-eye" id="togglePassword" style="cursor: pointer;"></i>
         </div>
         <div class="ele">
             <h3>Birthdate</h3>
-            <input type="text" name='Bdate' value="<%= user.Bdate.toString().substring(0, 15) %>" readonly
-                style="cursor: not-allowed;">
+            <input type="text" name='Bdate' value="<%= user.Bdate.toString().substring(0, 15) %>">
         </div>
         <div class="ele">
             <h3>Role</h3>
-            <input type="text" name="role" value="<%= user.role %>" readonly style="cursor: not-allowed;">
+            <input type="text" name="role" value="<%= user.role %>" >
         </div>
 
         <input type="text" name="id" value="<%= user._id %>" style="display: none;">
         <!-- <input type="submit" value="Update"> -->
+        <button type="submit">Update</button>
     </form>
 
     <script defer>
@@ -42,6 +42,35 @@
                 password.type = 'password';
             }
         });
+        
+        const form=document.querySelector("form");
+
+        form.addEventListener("submit",async (e)=>{
+            e.preventDefault();
+
+            const id=form.id.value;
+            const password=form.password.value;
+            const Bdate=form.Bdate.value;
+            const role=form.role.value;
+
+          try{
+                const res=await fetch('/profile',{
+                    method: "PUT",
+                    body: JSON.stringify({ id,password,Bdate,role }),
+                    headers: { "Content-Type":"application/json" }
+                });
+                const data = await res.json();
+                if (data) {
+                   window.location.href = data.redirect;
+                 }
+              }
+          catch(err){
+                console.log(err);
+            }
+        });
+
+       
+
     </script>
 
     <%- include('partials/footer'); -%>

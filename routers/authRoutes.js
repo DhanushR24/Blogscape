@@ -8,4 +8,7 @@ router.get('/login', authCOntroller.login_get)
 router.post('/login', authCOntroller.login_post)
 router.get('/logout', authCOntroller.logout_get)
 
+//profile:
+router.put('/profile',authCOntroller.profile_upd)
+
 module.exports = router;
