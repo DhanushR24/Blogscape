@@ -23,8 +23,8 @@
             </select>
         </div>
 
-        <input type="text" value="<%= user.userName %>" name="username" style="display: none;">
-        <input type="text" value="<%= user.profile %>" name="profile" style="display: none;">
+        <input type="hidden" value="<%= user.userName %>" name="username">
+        <input type="hidden" value="<%= user.profile %>" name="profile">
         <input type="submit" value="submit" id="blog-submit">
     </form>
 </div>

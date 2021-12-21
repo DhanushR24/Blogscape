@@ -7,6 +7,7 @@ const app = express();
 
 const authRoutes = require('./routers/authRoutes');
 const blogRoutes = require('./routers/blogRoutes');
+const commentRoutes = require('./routers/commentRoutes');
 // const User = require('./models/User')
 
 const {
@@ -46,6 +47,7 @@ app.get('/profile', (req, res) => res.render('profile', {
 }));
 
 app.use(blogRoutes);
+app.use(commentRoutes);
 
 app.use((req, res) => {
     res.render('404', {

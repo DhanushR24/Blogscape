@@ -1,0 +1,25 @@
+<%- include('partials/header'); -%>
+
+<div id="comments-container">
+    <div id="back-to-blogs">
+        <a href="/blogs" id="back-to-blogs-link" class="content_button">Back to blogs</a>
+    </div>
+    <div id="comments">
+        <!-- The comments go here :) -->
+    </div>
+    <div id="post-comments">
+        <form id="post-comment-form" action="/comments/post" method="post">
+            <textarea name="comment" id="comment" cols="48" rows="1"
+            placeholder="What are your thoughts ?" required
+            style="resize: none;text-align: left;font-size: large;border-radius: 3%;padding: 0.5em;" spellcheck="true"></textarea>
+
+            <input type="hidden" name="blog_id" value="<%- blog_id %>">
+            <input type="hidden" name="user_id" value="<%- user._id %>">
+            <input type="hidden" name="username" value="<%- user.userName %>">
+
+            <input type="submit" value="Post">
+        </form>
+    </div>
+</div>
+
+<%- include('partials/footer'); -%>

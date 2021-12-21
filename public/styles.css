@@ -222,6 +222,17 @@ form {
   color: var(--form-ele);
 }
 
+form#post-comment-form {
+  display: flex;
+}
+
+form#post-comment-form input[type="submit"] {
+  padding: 1em 1.5em;
+  width: auto;
+  background: var(--form-ele);
+  color: white;
+}
+
 form .form_foot {
   text-align: center;
 }
@@ -237,7 +248,8 @@ form .form_foot {
 }
 
 input, textarea {
-  color: var(--blog-color);
+  color: var(--blog-color) !important;
+  background-color: var(--blog-bg);
 }
 
 form input {

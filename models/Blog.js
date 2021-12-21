@@ -29,11 +29,10 @@ const BlogSchema = new Schema({
         type: Number,
         default: 0
     },
-
-    // Comment: {
-    //     type: String,
-    //     default: ""
-    // }
+    comments: {
+        type: Number,
+        default: 0
+    }
 }, {
     timestamps: true
 });
