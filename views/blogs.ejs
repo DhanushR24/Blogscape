@@ -31,6 +31,7 @@
     <div id="blogs">
         <!-- The blog contents go here :) -->
     </div>
+    
 </div>
 
 <script defer>
@@ -87,7 +88,7 @@
                                 width="80px" height="80px" style="border-radius: 50%; display: block;">
                             <div class="user-text">
                                 <h2>${ele.username || " "}</h2>
-                                <p style="color: #808080;">name@email.com</p>
+                                <!-- <p style="color: #808080;">$#{ele.email}</p> -->
                             </div>
                         </div>
                         <div class="blog-detail">
@@ -95,7 +96,7 @@
                             <p>${ele.description}</p>
                         </div>
                         <div class="like">
-                            <i class="fas fa-heart"></i>
+                            <i class="far fa-heart" data-blogid=${ele._id}></i>
                             <p style="margin: 0 1em;">${ele.likes}%> </p>
                         </div>
                     </div>
@@ -106,6 +107,39 @@
 
             })
 
+            const likes = document.querySelectorAll('.fa-heart');
+            Array.from(likes).forEach((ele) => {
+                ele.addEventListener('click', (e) => {
+                    const blogid = e.target.dataset.blogid;
+
+
+                    if(e.target.classList.contains('fas')) {
+                        e.target.classList.remove('fas');
+                        e.target.classList.add('far');
+                        e.target.nextElementSibling.innerHTML = parseInt(e.target.nextElementSibling.innerHTML) - 1;
+                    }
+                    else {
+                        e.target.classList.remove('far');
+                        e.target.classList.add('fas');
+                        e.target.nextElementSibling.innerHTML = parseInt(e.target.nextElementSibling.innerHTML) + 1;
+                    }
+
+                    fetch(`/likeBlog/${blogid}`, {
+                        method: "put",
+                        headers: {
+                            "Content-Type": "application/json"
+                        },
+                        body: JSON.stringify({
+                            likes: ele.nextElementSibling.innerHTML
+                        })
+                    })
+                    .then((res) => {
+                    })
+                    .catch((err) => {
+                        console.log(err);
+                    })
+                })
+            })
         }
     }
 

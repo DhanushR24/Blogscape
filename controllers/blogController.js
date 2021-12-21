@@ -8,20 +8,22 @@ module.exports.get_blogs = (req, res) => {
         }
         // res.send(blogs);
         res.render('blogs', {
-            title: 'blogs',
-            allblogs: blogs
+            title: 'blogs'
         });
     });
 }
 
 module.exports.get_all_blogs = (req, res) => {
-    Blog.find({}, (err, blogs) => {
-        if (err) {
+    Blog.find({})
+        .sort({
+            createdAt: -1
+        })
+        .then((blogs) => {
+            res.send(blogs);
+        })
+        .catch((err) => {
             console.log(err);
-            return;
-        }
-        res.send(blogs);
-    });
+        });
 }
 
 module.exports.post_blog = (req, res) => {
@@ -55,5 +57,19 @@ module.exports.post_blog = (req, res) => {
 module.exports.get_create_blog = (req, res) => {
     res.render('createBlogs', {
         title: 'Create Blog'
+    });
+}
+
+module.exports.like_blog = (req, res) => {
+    const id = req.params.id;
+    let likes = parseInt(req.body.likes);
+
+    Blog.findByIdAndUpdate(id, {
+        likes
+    })
+    .then((blog) => {
+        res.json(blog);
+    }).catch((err) => {
+        console.log(err);
     });
 }
