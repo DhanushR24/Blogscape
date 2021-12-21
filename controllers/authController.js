@@ -148,3 +148,13 @@ module.exports.logout_get = (req, res) => {
     res.clearCookie('jwt');
     res.redirect('/');
 }
+
+module.exports.profile_upd=(req,res)=>{
+    const { id,password,Bdate,role }=req.body;
+
+    User.findOneAndUpdate({_id:id},{ password,Bdate,role })
+      .then((result)=>{
+          res.json({redirect: '/profile'});
+      })
+      .catch((err)=>console.log(err))
+}
