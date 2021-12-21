@@ -119,6 +119,7 @@ label i.fas {
 }
 
 .main_head .header_text h1 a {
+  padding-right: 1rem;
   font-family: 'Caveat', cursive;
   background: linear-gradient(to right bottom, #414ce6, #a33ccd, #d433b0, #f04094, #fd5a7c, #ff706d, #ff8763, #ff9e5f, #ffb45d, #ffca5e, #ffe164, #f9f871);
   
