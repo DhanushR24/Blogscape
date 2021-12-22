@@ -9,7 +9,7 @@
 :root {
   --bg-img: url('./images/background-img.jpg');
   --form-bg: white;
-  --form-ele: #2f4f4f;
+  --form-ele: #5a63e0;
   --blog-bg: #fffffff2;
   --blog-color: black;
 
@@ -263,6 +263,10 @@ form input {
 }
 form input:not([type='submit']) {
   background: var(--form-bg) !important;
+}
+
+.ele h3 {
+  margin-top: 0.75em;
 }
 
 

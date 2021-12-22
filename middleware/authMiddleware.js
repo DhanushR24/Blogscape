@@ -7,7 +7,7 @@ module.exports.checkUser = (req, res, next) => {
     if (token) {
         jwt.verify(token, 'secret salt', async (err, decodedToken) => {
             if (err) {
-                console.log(err.message)
+                // console.log(err.message)
                 res.locals.user = null;
                 next();
             } else {

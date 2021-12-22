@@ -19,7 +19,7 @@ const CommentSchema = new mongoose.Schema({
     },
     profile: {
         type: String,
-        default: "images/animals/female-lion"
+        default: "images/animals/female-lion.svg"
     }
 });
 

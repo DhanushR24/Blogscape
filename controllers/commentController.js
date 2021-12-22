@@ -1,18 +1,22 @@
 const Comment = require('../models/Comment');
 const Blog = require('../models/Blog');
+const {checkUser} = require('../middleware/authMiddleware');
 
-module.exports.get_comments = (req, res) => {
-    const blogId = req.params.id;
+module.exports.get_comments = (req, res, next) => {
+    const id = req.params.id;
 
     Comment.find({
-        blogId
+        blogId:id
     }, (err, comments) => {
         if (err) {
-            console.log(err);
+            // console.log(err);
         } else {
+            // console.log(comments);
+            // res.json(comments);
+            checkUser(req, res, next);
             res.render('comments', {
                 title: 'Comments',
-                blog_id: blogId,
+                blog_id: id,
                 comments
             });
         }
@@ -25,8 +29,10 @@ module.exports.post_comments = (req, res) => {
     const username = req.body.username;
     const profile = req.body.profile;
 
+    console.log(id);
+
     Comment.create({
-            id,
+            blogId: id,
             comment,
             username,
             profile
@@ -38,7 +44,7 @@ module.exports.post_comments = (req, res) => {
                     }
                 })
                 .then(blog => {
-                    res.json(blog);
+                    res.redirect(`/comment/${id}`);
                 })
                 .catch(err => {
                     console.log(err);
