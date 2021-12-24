@@ -83,3 +83,16 @@ module.exports.like_blog = (req, res) => {
       console.log(err);
     });
 };
+
+module.exports.delete_blog = (req, res) => {
+  const id = req.params.id;
+
+  Blog.findByIdAndDelete(id)
+    .then((blog) => {
+      console.log(blog);
+      res.json(blog);
+    })
+    .catch((err) => {
+      console.log(err);
+    });
+}

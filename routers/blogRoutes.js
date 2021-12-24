@@ -9,5 +9,6 @@ router.get('/loadBlogs/:user',blogController.get_user_blogs)
 router.get('/createBlog', blogController.get_create_blog);
 router.post('/createBlog', blogController.post_blog);
 router.put('/likeBlog/:id', blogController.like_blog);
+router.delete('/deleteBlog/:id', blogController.delete_blog);
 
 module.exports = router;

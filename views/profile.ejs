@@ -2,35 +2,17 @@
 
 <div id="profile-page container-flex" style="display: flex">
   <div class="profile-container">
-    <form action="" class="profile">
+    <form action="" class="profile" style="margin: 0;">
       <h2>Profile</h2>
-      <img
-        src="<%= user.profile %>"
-        onerror="this.src='images/animals/female-lion.svg'"
-        alt="Profile pic"
-        width="200px"
-        height="200px"
-        style="border-radius: 50%; display: block; margin: 0 auto"
-      />
+      <img src="<%= user.profile %>" onerror="this.src='images/animals/female-lion.svg'" alt="Profile pic" width="200px"
+        height="200px" style="border-radius: 50%; display: block; margin: 0 auto" />
       <div class="ele">
         <h3>Email</h3>
-        <input
-          type="text"
-          name="email"
-          value="<%= user.email %>"
-          readonly
-          style="cursor: not-allowed"
-        />
+        <input type="text" name="email" value="<%= user.email %>" readonly style="cursor: not-allowed" />
       </div>
       <div class="ele">
         <h3>UserName</h3>
-        <input
-          type="text"
-          name="userName"
-          value="<%= user.userName %>"
-          readonly
-          style="cursor: not-allowed"
-        />
+        <input type="text" name="userName" value="<%= user.userName %>" readonly style="cursor: not-allowed" />
       </div>
       <div class="ele">
         <h3>Password</h3>
@@ -39,22 +21,13 @@
       </div>
       <div class="ele">
         <h3>Birthdate</h3>
-        <input
-          type="text"
-          name="Bdate"
-          value="<%= user.Bdate.toString().substring(0, 15) %>"
-        />
+        <input type="text" name="Bdate" value="<%= user.Bdate.toString().substring(0, 15) %>" />
       </div>
       <div class="ele">
         <h3>Role</h3>
         <input type="text" name="role" value="<%= user.role %>" />
       </div>
-      <input
-        type="text"
-        name="id"
-        value="<%= user._id %>"
-        style="display: none"
-      />
+      <input type="text" name="id" value="<%= user._id %>" style="display: none" />
       <!-- <input type="submit" value="Update"> -->
       <button type="submit">Update</button>
     </form>
@@ -88,8 +61,15 @@
     try {
       const res = await fetch("/profile", {
         method: "PUT",
-        body: JSON.stringify({ id, password, Bdate, role }),
-        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          id,
+          password,
+          Bdate,
+          role
+        }),
+        headers: {
+          "Content-Type": "application/json"
+        },
       });
       const data = await res.json();
       if (data) {
@@ -126,7 +106,6 @@
                     <p>Create a blog to get started!</p>
                 </div>
             `;
-        console.log(1);
       } else {
         allBlogs.forEach((ele) => {
           let blog = `
@@ -145,30 +124,22 @@
                         </div>
                         <div class="blog-detail">
                             <h3>${ele.title}</h3>
+                            <p style='color:${colorCategory[ele.category]}'>${ele.category}</p>
                             <p>${ele.description}</p>
                         </div>
                         <div class="like-comment">
-                            <div class="like">
-                                <i class="far fa-heart" data-blogid=${
+                            <div class="delete">
+                              <i class="fas fa-trash" data-blogid=${
                                   ele._id
                                 }></i>
-                                <p style="margin: 0 1em 0 0.5em;">${
-                                  ele.likes
-                                }%> </p>
-                            </div>
-                            <div class="comment">
-                                <a href="/comment/${
-                                  ele._id
-                                }"><i class="fas fa-comment-alt"></i></a>
-                                <p style="margin: 0 1em 0 0.5em;">${
-                                  ele.comments
-                                }%> </p>
                             </div>
                         </div>
                     </div>
                     `;
           blogs.innerHTML += blog;
+
         });
+        
 
         blogs.innerHTML =
           blogs.innerHTML ||
@@ -177,42 +148,27 @@
                     <h1>No blogs created yet!</h1>
                     <p>Why not be the first to the blog? <a href="/createBlog">Create blog</a> </p>
                 </div>`;
+      }
+    })
+    .then(res => {
+      const deleteBlogs = document.querySelectorAll('.fa-trash');
 
-        const likes = document.querySelectorAll(".fa-heart");
-        Array.from(likes).forEach((ele) => {
+        Array.from(deleteBlogs).forEach((ele) => {
           ele.addEventListener("click", (e) => {
             const blogid = e.target.dataset.blogid;
 
-            if (e.target.classList.contains("fas")) {
-              e.target.classList.remove("fas");
-              e.target.classList.add("far");
-              e.target.nextElementSibling.innerHTML =
-                parseInt(e.target.nextElementSibling.innerHTML) - 1;
-            } else {
-              e.target.classList.remove("far");
-              e.target.classList.add("fas");
-              e.target.nextElementSibling.innerHTML =
-                parseInt(e.target.nextElementSibling.innerHTML) + 1;
-            }
-
-            fetch(`/likeBlog/${blogid}`, {
-              method: "put",
-              headers: {
-                "Content-Type": "application/json",
-              },
-              body: JSON.stringify({
-                likes: ele.nextElementSibling.innerHTML,
-              }),
-            })
-              .then((res) => {})
-              .catch((err) => {
-                console.log(err);
-              });
+            fetch(`/deleteBlog/${blogid}`, {
+                method: "DELETE"
+              })
+              .then((res) => {
+                window.location.reload();
+              })
+              .catch((err) => console.log(err));
           });
         });
-      }
     })
     .catch((err) => console.log(err));
+
 </script>
 
 <%- include('partials/footer'); -%>
