@@ -2,12 +2,15 @@
 
 <div id="comments-container">
     <div id="back-to-blogs">
-        <a href="/blogs" id="back-to-blogs-link" class="content_button">Back to blogs</a>
+        <a href="/blogs" id="back-to-blogs-link" class="content_button">< Back to blogs</a>
     </div>
     <div id="comments">
+       <% if (comments) { %>
+        
+       
         <% comments.forEach(comment => { %>
             
-            <div>
+            <div class="comment-box">
                 <div class="user-detail">
                     <img src="" onerror="this.src='../images/animals/female-lion.svg'" alt="Profile pic"
                         width="80px" height="80px" style="border-radius: 50%; display: block;">
@@ -17,17 +20,20 @@
                     </div>
                 </div>
             </div>
-        <% }); %> 
+        <%}); } else { %>
+            <h2>No comments posted yet.....</h2>
+         <% }%>
+          
     </div>
     <div id="post-comments">
         <form id="post-comment-form" action="/comment/<%= blog_id %> " method="post">
             <textarea name="comment" id="comment" cols="48" rows="1"
             placeholder="What are your thoughts ?" required
-            style="resize: none;text-align: left;font-size: large;border-radius: 3%;padding: 0.5em;" spellcheck="true"></textarea>
+            style="resize: none;text-align: left;font-size: large;border-radius: 5px;padding: 0.5em; border: none;" spellcheck="true"></textarea>
 
             <input type="hidden" name="username" value="<%= user.userName %>">
             <input type="hidden" name="profile" values="<%= user.profile %> ">
-            <input type="submit" value="Post">
+            <input type="submit" value="Post" style="color: aliceblue;">
         </form>
     </div>
 </div>

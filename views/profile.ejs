@@ -1,76 +1,218 @@
 <%- include('partials/header'); -%>
 
-<div class="profile-container">
+<div id="profile-page container-flex" style="display: flex">
+  <div class="profile-container">
     <form action="" class="profile">
-        <h2>Profile</h2>
-        <img src="<%= user.profile %>" onerror="this.src='images/animals/female-lion.svg'" alt="Profile pic"
-            width="200px" height="200px" style="border-radius: 50%; display: block; margin: 0 auto;">
-        <div class="ele">
-            <h3>Email</h3>
-            <input type="text" name="email" value="<%= user.email %>" readonly style="cursor: not-allowed;">
-        </div>
-        <div class="ele">
-            <h3>UserName</h3>
-            <input type="text" name="userName" value="<%= user.userName %>" readonly style="cursor: not-allowed;">
-        </div>
-        <div class="ele">
-            <h3>Password</h3>
-            <input type="password" name="password" value="<%= user.password %>" >
-            <i class="far fa-eye" id="togglePassword" style="cursor: pointer;"></i>
-        </div>
-        <div class="ele">
-            <h3>Birthdate</h3>
-            <input type="text" name='Bdate' value="<%= user.Bdate.toString().substring(0, 15) %>">
-        </div>
-        <div class="ele">
-            <h3>Role</h3>
-            <input type="text" name="role" value="<%= user.role %>" >
-        </div>
-
-        <input type="text" name="id" value="<%= user._id %>" style="display: none;">
-        <!-- <input type="submit" value="Update"> -->
-        <button type="submit">Update</button>
+      <h2>Profile</h2>
+      <img
+        src="<%= user.profile %>"
+        onerror="this.src='images/animals/female-lion.svg'"
+        alt="Profile pic"
+        width="200px"
+        height="200px"
+        style="border-radius: 50%; display: block; margin: 0 auto"
+      />
+      <div class="ele">
+        <h3>Email</h3>
+        <input
+          type="text"
+          name="email"
+          value="<%= user.email %>"
+          readonly
+          style="cursor: not-allowed"
+        />
+      </div>
+      <div class="ele">
+        <h3>UserName</h3>
+        <input
+          type="text"
+          name="userName"
+          value="<%= user.userName %>"
+          readonly
+          style="cursor: not-allowed"
+        />
+      </div>
+      <div class="ele">
+        <h3>Password</h3>
+        <input type="password" name="password" value="<%= user.password %>" />
+        <i class="far fa-eye" id="togglePassword" style="cursor: pointer"></i>
+      </div>
+      <div class="ele">
+        <h3>Birthdate</h3>
+        <input
+          type="text"
+          name="Bdate"
+          value="<%= user.Bdate.toString().substring(0, 15) %>"
+        />
+      </div>
+      <div class="ele">
+        <h3>Role</h3>
+        <input type="text" name="role" value="<%= user.role %>" />
+      </div>
+      <input
+        type="text"
+        name="id"
+        value="<%= user._id %>"
+        style="display: none"
+      />
+      <!-- <input type="submit" value="Update"> -->
+      <button type="submit">Update</button>
     </form>
+  </div>
+  <div id="blogs">
+    <!-- The blog contents go here :) -->
+  </div>
+</div>
 
-    <script defer>
-        const togglePassword = document.getElementById('togglePassword');
-        togglePassword.addEventListener('click', () => {
-            const password = document.querySelector('input[name="password"]');
-            if (password.type === 'password') {
-                password.type = 'text';
+<script defer>
+  const togglePassword = document.getElementById("togglePassword");
+  togglePassword.addEventListener("click", () => {
+    const password = document.querySelector('input[name="password"]');
+    if (password.type === "password") {
+      password.type = "text";
+    } else {
+      password.type = "password";
+    }
+  });
+
+  const form = document.querySelector("form");
+
+  form.addEventListener("submit", async (e) => {
+    e.preventDefault();
+
+    const id = form.id.value;
+    const password = form.password.value;
+    const Bdate = form.Bdate.value;
+    const role = form.role.value;
+
+    try {
+      const res = await fetch("/profile", {
+        method: "PUT",
+        body: JSON.stringify({ id, password, Bdate, role }),
+        headers: { "Content-Type": "application/json" },
+      });
+      const data = await res.json();
+      if (data) {
+        window.location.href = data.redirect;
+      }
+    } catch (err) {
+      console.log(err);
+    }
+  });
+
+  let allBlogs = [];
+
+  const blogs = document.querySelector("#blogs");
+  const noblogs = document.querySelector(".noblogs");
+
+  const colorCategory = {
+    Technology: "#00E4BA",
+    Science: "#0086FD",
+    Sports: "#FF7D5C",
+    Entertainment: "#F9F871",
+    Health: "#FFBF4C",
+    Other: "#D11AB8",
+  };
+
+  const username = form.userName.value;
+  fetch(`/loadBlogs/${username}`)
+    .then((res) => res.json())
+    .then((data) => {
+      allBlogs = data;
+      if (allBlogs.length == 0) {
+        blogs.innerHTML = `
+                <div class="noblogs">
+                    <h1>No blogs yet!</h1>
+                    <p>Create a blog to get started!</p>
+                </div>
+            `;
+        console.log(1);
+      } else {
+        allBlogs.forEach((ele) => {
+          let blog = `
+                    <div class="blog" style="border-right: 15px solid ${
+                      colorCategory[ele.category]
+                    };">
+                        <div class="user-detail">
+                            <img src="${
+                              ele.profile
+                            }" onerror="this.src='images/animals/female-lion.svg'" alt="Profile pic"
+                                width="80px" height="80px" style="border-radius: 50%; display: block;">
+                            <div class="user-text">
+                                <h2>${ele.username || " "}</h2>
+                                <!-- <p style="color: #808080;">$#{ele.email}</p> -->
+                            </div>
+                        </div>
+                        <div class="blog-detail">
+                            <h3>${ele.title}</h3>
+                            <p>${ele.description}</p>
+                        </div>
+                        <div class="like-comment">
+                            <div class="like">
+                                <i class="far fa-heart" data-blogid=${
+                                  ele._id
+                                }></i>
+                                <p style="margin: 0 1em 0 0.5em;">${
+                                  ele.likes
+                                }%> </p>
+                            </div>
+                            <div class="comment">
+                                <a href="/comment/${
+                                  ele._id
+                                }"><i class="fas fa-comment-alt"></i></a>
+                                <p style="margin: 0 1em 0 0.5em;">${
+                                  ele.comments
+                                }%> </p>
+                            </div>
+                        </div>
+                    </div>
+                    `;
+          blogs.innerHTML += blog;
+        });
+
+        blogs.innerHTML =
+          blogs.innerHTML ||
+          `
+                <div class="noblogs">
+                    <h1>No blogs created yet!</h1>
+                    <p>Why not be the first to the blog? <a href="/createBlog">Create blog</a> </p>
+                </div>`;
+
+        const likes = document.querySelectorAll(".fa-heart");
+        Array.from(likes).forEach((ele) => {
+          ele.addEventListener("click", (e) => {
+            const blogid = e.target.dataset.blogid;
+
+            if (e.target.classList.contains("fas")) {
+              e.target.classList.remove("fas");
+              e.target.classList.add("far");
+              e.target.nextElementSibling.innerHTML =
+                parseInt(e.target.nextElementSibling.innerHTML) - 1;
             } else {
-                password.type = 'password';
+              e.target.classList.remove("far");
+              e.target.classList.add("fas");
+              e.target.nextElementSibling.innerHTML =
+                parseInt(e.target.nextElementSibling.innerHTML) + 1;
             }
-        });
-        
-        const form=document.querySelector("form");
 
-        form.addEventListener("submit",async (e)=>{
-            e.preventDefault();
-
-            const id=form.id.value;
-            const password=form.password.value;
-            const Bdate=form.Bdate.value;
-            const role=form.role.value;
-
-          try{
-                const res=await fetch('/profile',{
-                    method: "PUT",
-                    body: JSON.stringify({ id,password,Bdate,role }),
-                    headers: { "Content-Type":"application/json" }
-                });
-                const data = await res.json();
-                if (data) {
-                   window.location.href = data.redirect;
-                 }
-              }
-          catch(err){
+            fetch(`/likeBlog/${blogid}`, {
+              method: "put",
+              headers: {
+                "Content-Type": "application/json",
+              },
+              body: JSON.stringify({
+                likes: ele.nextElementSibling.innerHTML,
+              }),
+            })
+              .then((res) => {})
+              .catch((err) => {
                 console.log(err);
-            }
+              });
+          });
         });
+      }
+    })
+    .catch((err) => console.log(err));
+</script>
 
-       
-
-    </script>
-
-    <%- include('partials/footer'); -%>
+<%- include('partials/footer'); -%>
