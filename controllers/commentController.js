@@ -1,24 +1,30 @@
 const Comment = require('../models/Comment');
 const Blog = require('../models/Blog');
-const {checkUser} = require('../middleware/authMiddleware');
+const {
+    checkUser
+} = require('../middleware/authMiddleware');
 
 module.exports.get_comments = (req, res, next) => {
     const id = req.params.id;
 
     Comment.find({
-        blogId:id
+        blogId: id
     }, (err, comments) => {
         if (err) {
             // console.log(err);
         } else {
             // console.log(comments);
             // res.json(comments);
-            checkUser(req, res, next);
-            res.render('comments', {
-                title: 'Comments',
-                blog_id: id,
-                comments
-            });
+            Blog.findById(id)
+                .then((result) => {
+                    checkUser(req, res, next);
+                    res.render('comments', {
+                        title: 'Comments',
+                        blog_id: id,
+                        blog: result,
+                        comments
+                    });
+                })
         }
     });
 }
