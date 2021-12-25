@@ -1,18 +1,36 @@
 <%- include('partials/header'); -%>
 
-<div id="profile-page container-flex" style="display: flex">
+<div id="profile-page" class="container-flex">
   <div class="profile-container">
-    <form action="" class="profile" style="margin: 0;">
+    <form action="" class="profile" style="margin: 0">
       <h2>Profile</h2>
-      <img src="<%= user.profile %>" onerror="this.src='images/animals/female-lion.svg'" alt="Profile pic" width="200px"
-        height="200px" style="border-radius: 50%; display: block; margin: 0 auto" />
+      <img
+        src="<%= user.profile %>"
+        onerror="this.src='images/animals/female-lion.svg'"
+        alt="Profile pic"
+        width="200px"
+        height="200px"
+        style="border-radius: 50%; display: block; margin: 0 auto"
+      />
       <div class="ele">
         <h3>Email</h3>
-        <input type="text" name="email" value="<%= user.email %>" readonly style="cursor: not-allowed" />
+        <input
+          type="text"
+          name="email"
+          value="<%= user.email %>"
+          readonly
+          style="cursor: not-allowed"
+        />
       </div>
       <div class="ele">
         <h3>UserName</h3>
-        <input type="text" name="userName" value="<%= user.userName %>" readonly style="cursor: not-allowed" />
+        <input
+          type="text"
+          name="userName"
+          value="<%= user.userName %>"
+          readonly
+          style="cursor: not-allowed"
+        />
       </div>
       <div class="ele">
         <h3>Password</h3>
@@ -21,94 +39,108 @@
       </div>
       <div class="ele">
         <h3>Birthdate</h3>
-        <input type="text" name="Bdate" value="<%= user.Bdate.toString().substring(0, 15) %>" />
+        <input
+          type="text"
+          name="Bdate"
+          value="<%= user.Bdate.toString().substring(0, 15) %>"
+        />
       </div>
       <div class="ele">
         <h3>Role</h3>
         <input type="text" name="role" value="<%= user.role %>" />
       </div>
-      <input type="text" name="id" value="<%= user._id %>" style="display: none" />
+      <input
+        type="text"
+        name="id"
+        value="<%= user._id %>"
+        style="display: none"
+      />
       <!-- <input type="submit" value="Update"> -->
       <button type="submit">Update</button>
     </form>
   </div>
-  <div id="blogs">
-    <!-- The blog contents go here :) -->
+  <div class="user-blog-container">
+    <div class="bhead">
+      <h2>Your Blogs:</h2>
+    </div>
+    <div id="blogs" class="user-blogs">
+      <!-- The blog contents go here :) -->
+    </div>
   </div>
 </div>
-
-<script defer>
-  const togglePassword = document.getElementById("togglePassword");
-  togglePassword.addEventListener("click", () => {
-    const password = document.querySelector('input[name="password"]');
-    if (password.type === "password") {
-      password.type = "text";
-    } else {
-      password.type = "password";
-    }
-  });
-
-  const form = document.querySelector("form");
-
-  form.addEventListener("submit", async (e) => {
-    e.preventDefault();
-
-    const id = form.id.value;
-    const password = form.password.value;
-    const Bdate = form.Bdate.value;
-    const role = form.role.value;
-
-    try {
-      const res = await fetch("/profile", {
-        method: "PUT",
-        body: JSON.stringify({
-          id,
-          password,
-          Bdate,
-          role
-        }),
-        headers: {
-          "Content-Type": "application/json"
-        },
-      });
-      const data = await res.json();
-      if (data) {
-        window.location.href = data.redirect;
+  <script defer>
+    const togglePassword = document.getElementById("togglePassword");
+    togglePassword.addEventListener("click", () => {
+      const password = document.querySelector('input[name="password"]');
+      if (password.type === "password") {
+        password.type = "text";
+      } else {
+        password.type = "password";
       }
-    } catch (err) {
-      console.log(err);
-    }
-  });
+    });
 
-  let allBlogs = [];
+    const form = document.querySelector("form");
 
-  const blogs = document.querySelector("#blogs");
-  const noblogs = document.querySelector(".noblogs");
+    form.addEventListener("submit", async (e) => {
+      e.preventDefault();
 
-  const colorCategory = {
-    Technology: "#00E4BA",
-    Science: "#0086FD",
-    Sports: "#FF7D5C",
-    Entertainment: "#F9F871",
-    Health: "#FFBF4C",
-    Other: "#D11AB8",
-  };
+      const id = form.id.value;
+      const password = form.password.value;
+      const Bdate = form.Bdate.value;
+      const role = form.role.value;
 
-  const username = form.userName.value;
-  fetch(`/loadBlogs/${username}`)
-    .then((res) => res.json())
-    .then((data) => {
-      allBlogs = data;
-      if (allBlogs.length == 0) {
-        blogs.innerHTML = `
+      try {
+        const res = await fetch("/profile", {
+          method: "PUT",
+          body: JSON.stringify({
+            id,
+            password,
+            Bdate,
+            role,
+          }),
+          headers: {
+            "Content-Type": "application/json",
+          },
+        });
+        const data = await res.json();
+        if (data) {
+          window.location.href = data.redirect;
+        }
+      } catch (err) {
+        console.log(err);
+      }
+    });
+
+    let allBlogs = [];
+
+    const blogs = document.querySelector("#blogs");
+    const noblogs = document.querySelector(".noblogs");
+
+    const colorCategory = {
+      Technology: "#00E4BA",
+      Science: "#0086FD",
+      Sports: "#FF7D5C",
+      Entertainment: "#F9F871",
+      Health: "#FFBF4C",
+      Other: "#D11AB8",
+    };
+
+    const username = form.userName.value;
+    fetch(`/loadBlogs/${username}`)
+      .then((res) => res.json())
+      .then((data) => {
+        allBlogs = data;
+        if (allBlogs.length == 0) {
+          blogs.innerHTML = `
                 <div class="noblogs">
                     <h1>No blogs yet!</h1>
                     <p>Create a blog to get started!</p>
                 </div>
             `;
-      } else {
-        allBlogs.forEach((ele) => {
-          let blog = `
+        } else {
+          // blogs.innerHTML="<div><h2>Your Blogs:</h2><div>"
+          allBlogs.forEach((ele) => {
+            let blog = `
                     <div class="blog" style="border-right: 15px solid ${
                       colorCategory[ele.category]
                     };">
@@ -124,51 +156,51 @@
                         </div>
                         <div class="blog-detail">
                             <h3>${ele.title}</h3>
-                            <p style='color:${colorCategory[ele.category]}'>${ele.category}</p>
+                            <p style='color:${colorCategory[ele.category]}'>${
+              ele.category
+            }</p>
                             <p>${ele.description}</p>
                         </div>
                         <div class="like-comment">
                             <div class="delete">
                               <i class="fas fa-trash" data-blogid=${
-                                  ele._id
-                                }></i>
+                                ele._id
+                              }></i>
                             </div>
                         </div>
                     </div>
                     `;
-          blogs.innerHTML += blog;
+            blogs.innerHTML += blog;
+          });
 
-        });
-        
-
-        blogs.innerHTML =
-          blogs.innerHTML ||
-          `
+          blogs.innerHTML =
+            blogs.innerHTML ||
+            `
                 <div class="noblogs">
                     <h1>No blogs created yet!</h1>
                     <p>Why not be the first to the blog? <a href="/createBlog">Create blog</a> </p>
                 </div>`;
-      }
-    })
-    .then(res => {
-      const deleteBlogs = document.querySelectorAll('.fa-trash');
+        }
+      })
+      .then((res) => {
+        const deleteBlogs = document.querySelectorAll(".fa-trash");
 
         Array.from(deleteBlogs).forEach((ele) => {
           ele.addEventListener("click", (e) => {
             const blogid = e.target.dataset.blogid;
 
             fetch(`/deleteBlog/${blogid}`, {
-                method: "DELETE"
-              })
+              method: "DELETE",
+            })
               .then((res) => {
                 window.location.reload();
               })
               .catch((err) => console.log(err));
           });
         });
-    })
-    .catch((err) => console.log(err));
+      })
+      .catch((err) => console.log(err));
+  </script>
 
-</script>
+  <%- include('partials/footer'); -%>
 
-<%- include('partials/footer'); -%>
