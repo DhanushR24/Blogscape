@@ -563,6 +563,10 @@ form button:hover {
   margin-top: 1rem;
 }
 
+.comment-head-text {
+  width: 56.5%;
+}
+
 #comments-container #back-to-blogs {
   margin: 0 0 0 1rem;
   /* display: inline; */
