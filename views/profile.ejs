@@ -144,6 +144,7 @@
                     <div class="blog" style="border-right: 15px solid ${
                       colorCategory[ele.category]
                     };">
+                    <div>
                         <div class="user-detail">
                             <img src="${
                               ele.profile
@@ -161,7 +162,9 @@
             }</p>
                             <p>${ele.description}</p>
                         </div>
-                        <div class="like-comment">
+                    </div>
+                    <div>
+                        <div class="delete-edit">
                             <div class="delete">
                               <i class="fas fa-trash" data-blogid=${
                                 ele._id
@@ -169,6 +172,7 @@
                             </div>
                         </div>
                     </div>
+                </div>
                     `;
             blogs.innerHTML += blog;
           });
