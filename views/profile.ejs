@@ -109,9 +109,10 @@
       } else {
         allBlogs.forEach((ele) => {
           let blog = `
-                    <div class="blog" style="border-right: 15px solid ${
+                    <div class="blog profile-blog" style="border-right: 15px solid ${
                       colorCategory[ele.category]
                     };">
+                    <div>
                         <div class="user-detail">
                             <img src="${
                               ele.profile
@@ -127,14 +128,22 @@
                             <p style='color:${colorCategory[ele.category]}'>${ele.category}</p>
                             <p>${ele.description}</p>
                         </div>
-                        <div class="like-comment">
+                    </div>
+                    <div>
+                        <div class="delete-edit">
                             <div class="delete">
                               <i class="fas fa-trash" data-blogid=${
+                                  ele._id
+                                } style='margin-right:1em'></i>
+                            </div>
+                            <div class="edit">
+                              <i class="fas fa-pen" data-blogid=${
                                   ele._id
                                 }></i>
                             </div>
                         </div>
                     </div>
+                </div>
                     `;
           blogs.innerHTML += blog;
 

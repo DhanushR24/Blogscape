@@ -117,21 +117,19 @@ label i.fas {
 .main_head .header_text h1 a {
   padding-right: 1rem;
   font-family: "Caveat", cursive;
-  background: linear-gradient(
-    to right bottom,
-    #414ce6,
-    #a33ccd,
-    #d433b0,
-    #f04094,
-    #fd5a7c,
-    #ff706d,
-    #ff8763,
-    #ff9e5f,
-    #ffb45d,
-    #ffca5e,
-    #ffe164,
-    #f9f871
-  );
+  background: linear-gradient(to right bottom,
+      #414ce6,
+      #a33ccd,
+      #d433b0,
+      #f04094,
+      #fd5a7c,
+      #ff706d,
+      #ff8763,
+      #ff9e5f,
+      #ffb45d,
+      #ffca5e,
+      #ffe164,
+      #f9f871);
 
   /* background: linear-gradient(to right bottom, #9bcffe, #81c3fe, #58b7fe, #3eacfe, #2ba1fe, #1196fe, #0086fd); */
   background-clip: text;
@@ -292,6 +290,7 @@ form input {
   font-size: 1em;
   width: 95%;
 }
+
 form input:not([type="submit"]) {
   background: var(--form-bg) !important;
 }
@@ -416,6 +415,7 @@ form button:hover {
   border-left: 3px solid #00e4ba;
   /* border-radius: 10px; */
 }
+
 .c1.active {
   text-shadow: 2px 2px 5px #414ce6;
   color: white;
@@ -429,6 +429,7 @@ form button:hover {
   border-left: 3px solid #0086fd;
   /* border-radius: 10px; */
 }
+
 .c2.active {
   text-shadow: 2px 2px 5px #414ce6;
   background-color: #0086fd;
@@ -443,6 +444,7 @@ form button:hover {
   border-left: 3px solid #ff7d5c;
   /* border-radius: 10px; */
 }
+
 .c3.active {
   text-shadow: 2px 2px 5px #414ce6;
   background-color: #ff7d5c;
@@ -457,6 +459,7 @@ form button:hover {
   border-left: 3px solid #f9f871;
   /* border-radius: 10px; */
 }
+
 .c4.active {
   text-shadow: 2px 2px 5px #414ce6;
   background-color: #f9f871;
@@ -471,6 +474,7 @@ form button:hover {
   border-left: 3px solid #ffbf4c;
   /* border-radius: 10px; */
 }
+
 .c5.active {
   text-shadow: 2px 2px 5px #414ce6;
   background-color: #ffbf4c;
@@ -485,6 +489,7 @@ form button:hover {
   border-left: 3px solid #d11ab8;
   /* border-radius: 10px; */
 }
+
 .c6.active {
   text-shadow: 2px 2px 5px #414ce6;
   background-color: #d11ab8;
@@ -503,6 +508,7 @@ form button:hover {
 
   border-radius: 10px;
 }
+
 #create-blog-link:hover {
   box-shadow: 0 0 10px rgb(55, 66, 221);
 }
@@ -538,7 +544,8 @@ form button:hover {
   margin-left: 1em;
 }
 
-.like-comment {
+.like-comment,
+.delete-edit {
   display: flex;
 }
 
@@ -556,6 +563,7 @@ form button:hover {
   width: 100%;
   height: 100%;
 }
+
 #comments-container {
   margin-top: 1rem;
 }
@@ -615,6 +623,13 @@ form button:hover {
   color: var(--blog-color);
 }
 
+.profile-blog {
+  display: flex;
+  justify-content: space-between;
+}
+
+
+
 footer {
   text-align: center;
   /* margin: 200px 0 30px 0; */
@@ -641,6 +656,7 @@ footer {
 }
 
 @media screen and (max-width: 850px) {
+
   body,
   footer {
     font-size: 2.5vw;
