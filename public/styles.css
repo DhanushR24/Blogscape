@@ -563,8 +563,15 @@ form button:hover {
   margin-top: 1rem;
 }
 
+.comment-head {
+  justify-content: start;
+}
+
 .comment-head-text {
   width: 56.5%;
+  margin: 0 auto;
+  color: #3742dd;
+  text-shadow: 2px 2px 2px black;
 }
 
 #comments-container #back-to-blogs {
