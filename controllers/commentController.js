@@ -17,7 +17,7 @@ module.exports.get_comments = (req, res, next) => {
             // res.json(comments);
             Blog.findById(id)
                 .then((result) => {
-                    checkUser(req, res, next);
+                    // checkUser(req, res, next);
                     res.render('comments', {
                         title: 'Comments',
                         blog_id: id,
