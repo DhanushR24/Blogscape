@@ -1,4 +1,4 @@
-> # Blog-Site | Blog-Site
+> # Blogscape | Blog-Site
 
 ## Platform to Publish your ideas, your way Create beautiful and unique blogs. It's easy and free
 
