@@ -4,7 +4,6 @@
 
 ## Deployed at [blogscape](https://blogscape-blog-site.herokuapp.com/)
 
----
 > ## Tech stack
 * Front end
     - HTML
@@ -21,13 +20,17 @@
 * Deployment
     - Heroku
 
----
-
 > ### To try it out in your local server
 ``` git
 $ git clone https://github.com/Blogging-Website/Blog-Site.git
+```
+``` git
 $ cd Blog-Site
+```
+``` git
 $ npm install
+```
+``` git
 $ npm run dev
 ```
 ---
