@@ -27,7 +27,7 @@ app.use(cookieparser());
 app.set('view engine', 'ejs');
 
 // database connection
-const dbURI = "mongodb+srv://dinesh19:c2zjkgKvCxxTaHZp@nodetuts.djld1.mongodb.net/blogscape?retryWrites=true&w=majority";
+const dbURI = "mongodb+srv://Blogscape:ZIsVjWaWkyuczbip@cluster.bh7j7.mongodb.net/blogscape?retryWrites=true&w=majority";
 mongoose.connect(dbURI, {
         useNewUrlParser: true,
         useUnifiedTopology: true
